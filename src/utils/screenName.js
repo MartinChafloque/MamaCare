@@ -20,7 +20,8 @@ const perfilStack = {
 const authStack = {
     landing: "landing",
     login: "login",
-    register: "register"
+    register: "register",
+    verification: "verification"
 }
 
 export const screen = {

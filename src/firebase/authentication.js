@@ -1,23 +1,25 @@
-import { createUserWithEmailAndPassword, signOut, signInWithEmailAndPassword, sendEmailVerification } from "firebase/auth"
+import { createUserWithEmailAndPassword, signOut, signInWithEmailAndPassword, sendEmailVerification, PhoneMultiFactorGenerator } from "firebase/auth"
 import Toast from "react-native-toast-message";
+import { PhoneAuthProvider } from "firebase/auth";
 import { auth } from "./firebase";
+
 
 export const signUp = async (email, password) => {
     try{
         const credentials = await createUserWithEmailAndPassword(auth, email, password);
         sendEmailVerification(credentials.user).then(() => {
             Toast.show({
-                type: "error",
+                type: "info",
                 position: "bottom",
                 text1: "Se ha enviado un link de verificación a tu correo.",
-                text2: "Verificalo para poder iniciar sesión."
+                text2: "Verificalo para poder iniciar sesión.",
+                visibilityTime: 5000,
               });
         });
         logout();
         return credentials.user.uid;
     }catch (e){
-        const errorCode = e.code;
-        if(errorCode === "auth/invalid-email"){
+        if(e.code === "auth/invalid-email"){
             Toast.show({
                 type: "error",
                 position: "bottom",
@@ -25,7 +27,7 @@ export const signUp = async (email, password) => {
               });
         }
 
-        if(errorCode === "auth/weak-password"){
+        if(e.code === "auth/weak-password"){
             Toast.show({
                 type: "error",
                 position: "bottom",
@@ -33,7 +35,7 @@ export const signUp = async (email, password) => {
               });
         }
 
-        if(errorCode === "auth/email-already-in-use"){
+        if(e.code === "auth/email-already-in-use"){
             Toast.show({
                 type: "error",
                 position: "bottom",
@@ -59,25 +61,47 @@ export const signIn = async (email, password) => {
         }
         return true;
     } catch(e) {
-        const errorCode = e.code;
-        if(errorCode === "auth/invalid-email"){
+        if(e.code === "auth/invalid-email"){
             Toast.show({
                 type: "error",
                 position: "bottom",
                 text1: "Correo invalido.",
               });
+            return false;
         }
 
-        if(errorCode === "auth/user-not-found" || errorCode === "auth/wrong-password"){
+        if(e.code === "auth/user-not-found" || e.code === "auth/wrong-password"){
             Toast.show({
                 type: "error",
                 position: "bottom",
                 text1: "Correo electrónico o contraseña invalidas.",
               });
+            return false;
         }
+
+        if(e.code === "auth/multi-factor-auth-required") {
+            return false;
+        }
+
         return false;
     }
 }
+
+/*export const phoneCodeVerification = async (resolver, verificationId, verificationCode) => {
+    const cred = PhoneAuthProvider.credential(verificationId, verificationCode);
+    const multiFactorAssertion = PhoneMultiFactorGenerator.assertion(cred);
+    const userCredentials = await resolver.resolveSignIn(multiFactorAssertion);
+    if(!userCredentials.user.emailVerified) {
+        Toast.show({
+            type: "error",
+            position: "bottom",
+            text1: "No has verificado tu correo electrónico.",
+          });
+        logout();
+        return false;
+    }
+    return true;
+}*/
 
 export const logout = async () => {
     try{

@@ -10,7 +10,7 @@ export default function App() {
   const user = useCurrentUser();
 
   const AppContainer = () => {
-    if(user && user.emailVerified) {
+    if(user) {
       return <>
         <AppNavigation />
       </>

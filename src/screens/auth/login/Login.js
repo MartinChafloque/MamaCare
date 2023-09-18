@@ -1,5 +1,5 @@
 import React, {useState} from "react";
-import {View, Text, Pressable, Image, ScrollView, TextInput} from "react-native";
+import { View, Text, Pressable, Image, ScrollView, TextInput } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import { useFonts } from 'expo-font';
 import Toast from "react-native-toast-message";
@@ -32,11 +32,7 @@ export function Login(){
               });
             return;
         }
-
-        const response = await signIn(email, password);
-        if(!response) {
-            return;
-        }
+        await signIn(email, password);
     }
     
     return(
