@@ -1,15 +1,14 @@
 import React, {useEffect, useState} from 'react';
+import { ScrollView, TextInput, TouchableHighlight, View , Text, Pressable, Image } from 'react-native';
 import axios from "axios";
-import { ScrollView, TextInput, FlatList, TouchableHighlight, View , Text, Pressable, Image } from 'react-native';
 import { useFonts } from 'expo-font';
+import { API_KEY } from '@env'
 import { TypingAnimation } from 'react-native-typing-animation';
 import { useDbData } from "../../../firebase/useDbData";
 import { updateDbData } from "../../../firebase/updateDbData";
 import { styles } from './ChatStyles';
 
 export function Chat({ route }) {
-    const API_KEY = "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";
-
     const [initialRender, setInitialRender] = useState(true);
     const [input, setInput] = useState();
     const [loading, setLoading] = useState(false);
