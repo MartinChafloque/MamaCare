@@ -36,11 +36,11 @@ export function Login(){
     }
     
     return(
-        <ScrollView>
+        <React.StrictMode>
             <View style={styles.container}>
             <View style={styles.content}>
                 <View style={styles.imageContainer}>
-                    <Image source={require("../../../../assets/img/logoSmall.png")}/>
+                    <Image style={styles.searchIcon} source={require("../../../../assets/img/logoSmall.png")}/>
                 </View>
                 <Text style={styles.txtTitle("Miller")}>
                     Mama Care
@@ -57,6 +57,6 @@ export function Login(){
                 </Pressable>
             </View>
             </View>
-        </ScrollView>
+        </React.StrictMode>
     );
 }

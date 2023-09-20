@@ -1,0 +1,117 @@
+import React, {useEffect, useState} from 'react';
+import axios from "axios";
+import { ScrollView, TextInput, FlatList, TouchableHighlight, View , Text, Pressable, Image } from 'react-native';
+import { useFonts } from 'expo-font';
+import { TypingAnimation } from 'react-native-typing-animation';
+import { useDbData } from "../../../firebase/useDbData";
+import { updateDbData } from "../../../firebase/updateDbData";
+import { styles } from './ChatStyles';
+
+export function Chat({ route }) {
+    const API_KEY = "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";
+
+    const [initialRender, setInitialRender] = useState(true);
+    const [input, setInput] = useState();
+    const [loading, setLoading] = useState(false);
+    const { initialPrompt, userId, messageId, flag } = route.params;
+    const [ updateData ] = updateDbData("/");
+    const [ chat ] = useDbData("/chats/" + userId + "/" + messageId);
+
+    
+    const [loaded] = useFonts({
+        Miller: require('../../../../assets/fonts/MillerBannerRoman.ttf'),
+        MillerLight: require('../../../../assets/fonts/MillerBannerLight.ttf'),
+        MillerBold: require('../../../../assets/fonts/MillerBannerBold.ttf'),
+        MillerBlack: require('../../../../assets/fonts/MillerBannerBlack.ttf'),
+    });
+
+    useEffect(() => {
+        if(flag === "main" && chat && initialRender) {
+            setInitialRender(false);
+            sendMessage(initialPrompt);
+        }
+    }, [chat])
+
+
+    const sendMessage = async (content) => {
+        setLoading(true);
+        const userMessage = { role: "user", content: content };
+        const response = await axios.post("https://api.openai.com/v1/chat/completions",
+        {
+            model: "gpt-3.5-turbo",
+            messages: [...chat.messages, userMessage],
+            temperature: 0
+        },
+        {
+            headers: {
+                "Content-Type": "application/json",
+                "Authorization": "Bearer " + API_KEY
+            }
+        })
+        const botMessage = { role: "assistant", content: response.data.choices[0].message.content };
+        const newMessages = [...chat.messages, userMessage, botMessage];
+        updateData({ ["/chats/" + userId + "/" + messageId]: { ...chat, messages: newMessages } });
+        setInput("");
+        setLoading(false);
+    }
+
+    const LoadingAnimation = () => {
+        return <TypingAnimation
+            dotColor="black"
+            dotMargin={10}
+            dotAmplitude={5}
+            dotSpeed={0.15}
+            dotRadius={3}
+            dotY={0}
+        />
+    }
+
+    const MessageItem = ({ role, content }) => (
+        <View style={role === "user" ? styles.ownMessageContainer : styles.botMessageContainer}>
+            <TouchableHighlight style={role === "user" ? styles.ownMessage : styles.botMessage}>
+                <View>
+                    <Text style={styles.message("Miller")}>{content}</Text>
+                </View>
+            </TouchableHighlight>
+        </View>
+      );
+
+    if(!chat) return null;
+    
+    if (!loaded) {
+        return null;
+    }
+
+    return (
+        <ScrollView
+            automaticallyAdjustContentInsets={false}
+            keyboardDismissMode='on-drag'
+            keyboardShouldPersistTaps="never"
+            showsVerticalScrollIndicator={false}
+            contentContainerStyle={styles.container}
+        >
+            <ScrollView style={styles.messagesList}>
+                {chat.messages.slice(1).map((msg, idx) => (
+                    <MessageItem key={idx} role={msg.role} content={msg.content}/>
+                ))}
+            </ScrollView>
+            {
+                loading && 
+                <View style={styles.loadingContainer}>
+                    <LoadingAnimation />
+                </View>
+            }
+            <View style={styles.textInputContainer}>
+                <TextInput
+                    style={styles.searchBar}
+                    placeholder="Realiza tu pregunta..."
+                    onChangeText={(newText) => setInput(newText)}
+                    defaultValue={input}
+                />
+                <Pressable onPress={() => sendMessage(input)}>
+                    <Image source={require("../../../../assets/img/flechaDer.png")}/>
+                </Pressable>
+            </View>
+        </ScrollView>
+    )
+}

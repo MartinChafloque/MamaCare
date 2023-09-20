@@ -4,7 +4,7 @@ import { useFonts } from 'expo-font';
 import { styles } from "./BienestarStyles";
 import {screen} from "../../../utils/screenName"
 
-export default function Bienestar() {
+export function Bienestar() {
   return (
     <ScrollView>
       <View style={styles.content}>

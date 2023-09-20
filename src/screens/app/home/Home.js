@@ -1,4 +1,5 @@
 import {View, Text, ScrollView, Image, Pressable} from "react-native";
+import React from 'react';
 import { useNavigation } from "@react-navigation/native";
 import { useFonts } from 'expo-font';
 import { styles } from "./HomeStyles";
@@ -21,7 +22,7 @@ export function Home() {
   }
 
   return (
-    <ScrollView centerContent={true}>
+    <React.StrictMode>
       <View style={styles.content}>
         <Text style={styles.txtTitle("Miller")}>
           Mama Care
@@ -36,7 +37,7 @@ export function Home() {
                 Módulo{"\n"}Educativo
               </Text>
             </Pressable>
-            <Pressable style={styles.faqView}>
+            <Pressable style={styles.faqView} onPress={() => navigation.navigate(screen.inicio.faq)}>
               <View style={styles.images}>
                 <Image source={require("../../../../assets/img/homeFAQ.png")}/>
               </View>
@@ -78,6 +79,6 @@ export function Home() {
           </View>
         </View>
       </View>
-    </ScrollView>
+    </React.StrictMode>
   );
 }

@@ -7,13 +7,13 @@ export const styles = StyleSheet.create({
 
     content: {
         backgroundColor: "white",
-        justifyContent: "center", 
         alignItems: "center", 
         minHeight: windowHeight + 62, 
         minWidth: windowWidth
     },
 
     txtTitle: font => ({
+        marginTop: 30,
         fontFamily: font,
         fontSize: 43,
         color: "#3F0117",

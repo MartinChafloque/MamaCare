@@ -2,7 +2,9 @@ const inicioStack = {
     tab: "IniciosTab",
     home: "home",
     educativo: "educativo",
-    bienestar: "bienestar"
+    bienestar: "bienestar",
+    faq: "faq",
+    chat: "chat"
 };
 
 const agendaStack = {

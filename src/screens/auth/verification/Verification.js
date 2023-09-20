@@ -46,9 +46,9 @@ export function Verification({resolver, verificationId}) {
   }
 
   return (
-    <View>
+    <React.StrictMode>
       <View id="verify-container" />
       <Text>Verification</Text>
-    </View>
+    </React.StrictMode>
   )
 }

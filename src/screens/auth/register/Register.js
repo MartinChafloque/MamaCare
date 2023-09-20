@@ -53,14 +53,15 @@ export function Register() {
       const newUser = {
         id: response,
         name: name,
-        email: email
+        email: email,
+        faqs: 0
       }
       updateData({ ["/usuarios/" + response]: newUser });
     }
   }
 
   return (
-    <ScrollView>
+    <React.StrictMode>
             <View style={styles.container}>
             <View style={styles.content}>
                 <View style={styles.imageContainer}>
@@ -82,6 +83,6 @@ export function Register() {
                 </Pressable>
             </View>
             </View>
-        </ScrollView>
+        </React.StrictMode>
   );
 }

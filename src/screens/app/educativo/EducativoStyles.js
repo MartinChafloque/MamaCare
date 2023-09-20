@@ -6,8 +6,8 @@ const windowHeight = Dimensions.get('window').height;
 export const styles = StyleSheet.create({
 
     content: {
+        marginTop: 30,
         backgroundColor: "white",
-        justifyContent: "center", 
         alignItems: "center", 
         minHeight: windowHeight + 62, 
         minWidth: windowWidth

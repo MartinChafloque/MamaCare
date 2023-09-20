@@ -1,5 +1,5 @@
 import React from 'react'
-import { View, Text, Pressable, ScrollView, Image } from 'react-native'
+import { View, Text, Pressable, Image } from 'react-native'
 import { logout } from '../../../firebase/authentication';
 import { useCurrentUser } from '../../../firebase/useCurrentUser';
 import { useDbData } from '../../../firebase/useDbData';
@@ -41,7 +41,7 @@ export function Perfil() {
   }
 
   return (
-    <ScrollView>
+    <React.StrictMode>
       <View style={styles.content}>
         <View style={styles.topContainer}>
           <View style={styles.imageContainer}>
@@ -60,6 +60,6 @@ export function Perfil() {
           </View>
         </View>
       </View>
-    </ScrollView>
+    </React.StrictMode>
   );
 }

@@ -1,4 +1,5 @@
-import {View, Text, ScrollView, Image, Pressable} from "react-native";
+import React from "react";
+import {View, Text, Image, Pressable} from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import { useFonts } from 'expo-font';
 import { styles } from "./LandingStyles";
@@ -17,7 +18,7 @@ export function Landing(){
     }
 
     return(
-        <ScrollView centerContent={true}>
+        <React.StrictMode>
             <View style={styles.content}>
                 <Text style={styles.txtTitle("Miller")}>
                     MAMA CARE
@@ -33,6 +34,6 @@ export function Landing(){
                     <Image source={require("../../../../assets/img/logo_universidad.png")} style={styles.logoU}/>
                 </View>
             </View>
-        </ScrollView>
+        </React.StrictMode>
     );
 }
