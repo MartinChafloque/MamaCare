@@ -90,7 +90,7 @@ export const styles = StyleSheet.create({
     }),
 
     txtTitle: font => ({
-        marginTop: 30,
+        marginTop: 50,
         fontFamily: font,
         fontSize: 32,
         color: "#651C50"

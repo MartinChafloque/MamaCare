@@ -5,6 +5,8 @@ import { styles } from "./BienestarStyles";
 import {screen} from "../../../utils/screenName"
 
 export function Bienestar() {
+  const navigation = useNavigation();
+
   return (
     <ScrollView>
       <View style={styles.content}>
@@ -13,7 +15,7 @@ export function Bienestar() {
                 Energía en movimiento
           </Text>
         </Pressable>
-        <Pressable style={styles.caminandoView}>
+        <Pressable style={styles.caminandoView} onPress={() => navigation.navigate(screen.inicio.apoyo)}>
           <Text  style={styles.txtTemas("MillerBold")}>
                 Caminando juntos{"\n"}apoyo y superación
           </Text>

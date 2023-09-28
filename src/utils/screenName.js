@@ -4,7 +4,12 @@ const inicioStack = {
     educativo: "educativo",
     bienestar: "bienestar",
     faq: "faq",
-    chat: "chat"
+    chat: "chat",
+    //educativo
+    informacion: "informacion",
+    tratamientos: "tratamientos",
+    //bienestar
+    apoyo: "apoyo",
 };
 
 const agendaStack = {
@@ -23,7 +28,8 @@ const authStack = {
     landing: "landing",
     login: "login",
     register: "register",
-    verification: "verification"
+    verification: "verification",
+    forgotpassword: "forgotpassword"
 }
 
 export const screen = {

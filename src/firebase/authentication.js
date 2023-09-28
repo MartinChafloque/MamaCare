@@ -1,4 +1,4 @@
-import { createUserWithEmailAndPassword, signOut, signInWithEmailAndPassword, sendEmailVerification, PhoneMultiFactorGenerator } from "firebase/auth"
+import { createUserWithEmailAndPassword, signOut, signInWithEmailAndPassword, sendEmailVerification, PhoneMultiFactorGenerator, sendPasswordResetEmail } from "firebase/auth"
 import Toast from "react-native-toast-message";
 import { PhoneAuthProvider } from "firebase/auth";
 import { auth } from "./firebase";
@@ -102,6 +102,37 @@ export const signIn = async (email, password) => {
     }
     return true;
 }*/
+
+export const resetPassword = async (email) =>{
+    try{
+        await sendPasswordResetEmail(auth, email);
+        Toast.show({
+            type: "info",
+            position: "bottom",
+            text1: "Se ha enviado un correo para restaurar tu contraseña.",
+            visibilityTime: 5000,
+          });
+        return true;
+    }catch (e){
+        if(e.code === "auth/invalid-email"){
+            Toast.show({
+                type: "error",
+                position: "bottom",
+                text1: "Correo invalido.",
+              });
+            return false;
+        }
+        if(e.code === "auth/user-not-found"){
+            Toast.show({
+                type: "error",
+                position: "bottom",
+                text1: "El correo electrónico no existe.",
+              });
+            return false;
+        }
+        return false;
+    }
+}
 
 export const logout = async () => {
     try{

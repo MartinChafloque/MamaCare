@@ -7,9 +7,11 @@ export const styles = StyleSheet.create({
 
     content: {
         backgroundColor: "white",
-        alignItems: "center", 
-        minHeight: windowHeight + 62, 
-        minWidth: windowWidth
+        alignItems: "center",
+        justifyContent: "space-evenly",
+        minHeight: windowHeight + 62,
+        minWidth: windowWidth,
+        paddingBottom: 120
     },
 
     txtTitle: font => ({
@@ -43,7 +45,6 @@ export const styles = StyleSheet.create({
     },
 
     container: {
-        marginTop: 20,
         width: 335,
         height: 287,
         flexDirection: "row"
@@ -55,7 +56,6 @@ export const styles = StyleSheet.create({
 
     fraseContainer: {
         marginTop: 20,
-
     },
 
     fraseContent:{

@@ -1,6 +1,6 @@
-import React, {useEffect, useState} from 'react'
+import React, { useState } from 'react'
 import { useNavigation } from "@react-navigation/native";
-import { View, Text, Pressable, Image, ScrollView, TextInput} from 'react-native'
+import { View, Text, Pressable, Image, TextInput} from 'react-native'
 import { useFonts } from 'expo-font';
 import Toast from "react-native-toast-message";
 import { signUp } from '../../../firebase/authentication';

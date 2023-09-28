@@ -6,11 +6,13 @@ const windowHeight = Dimensions.get('window').height;
 export const styles = StyleSheet.create({
 
     content: {
-        marginTop: 30,
+        paddingTop: 20,
         backgroundColor: "white",
-        alignItems: "center", 
+        alignItems: "center",
+        justifyContent: "space-evenly", 
         minHeight: windowHeight + 62, 
-        minWidth: windowWidth
+        minWidth: windowWidth,
+        paddingBottom: 120
     },
 
     infoGeneralView:{

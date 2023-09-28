@@ -23,7 +23,7 @@ export function Educativo() {
   return (
     <ScrollView>
       <View style={styles.content}>
-        <Pressable style={styles.infoGeneralView}>
+        <Pressable style={styles.infoGeneralView} onPress={() => navigation.navigate(screen.inicio.informacion)}>
           <Text  style={styles.txtTemas("MillerBold")}>
                 Información general
           </Text>
@@ -43,7 +43,7 @@ export function Educativo() {
                 Nutrición vital
           </Text>
         </Pressable>
-        <Pressable style={styles.tratamientosView}>
+        <Pressable style={styles.tratamientosView} onPress={() => navigation.navigate(screen.inicio.tratamientos)}>
           <Text  style={styles.txtTemas("MillerBold")}>
                 Tratamientos y enfoque
           </Text>
