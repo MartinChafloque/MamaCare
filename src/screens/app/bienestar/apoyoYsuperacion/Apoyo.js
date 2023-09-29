@@ -1,21 +1,23 @@
-import { View, FlatList } from 'react-native'
 import React from 'react'
+import { View, FlatList, Pressable, Image } from 'react-native'
+import { styles } from "./ApoyoStyles"
+import { Card } from "../../../../components/card/Card"
+import { useContentData } from "../../../../firebase/useContentData"
 
-import {styles} from "./ApoyoStyles"
-import {Card} from "../../../../components/card/Card"
+export  function Apoyo({ route }) {
 
-import {useContentData} from "../../../../firebase/useContentData"
+  const { role } = route.params;
+  const [ cards ] = useContentData('/contenido'); 
 
-export  function Apoyo() {
-
-  const [cards] = useContentData('/contenido');
   if(!cards) return null; 
      // Filtrar los datos por el valor de "contenido"
   const datosFiltrados = cards.filter((item) => item.ubicacion === 'apoyo');
+
   const renderItem = ({ item, index }) => {
     // Renderiza el componente Card y pasa la información y el índice como props
-    return <Card contenido={item} index={index} />;
+    return <Card contenido={item} index={index} role={role} />;
   };
+
 
   return (
     <View style={styles.content}>
@@ -25,6 +27,15 @@ export  function Apoyo() {
         renderItem={renderItem}
         keyExtractor={(item, index) => index.toString()}
       />
+      {
+        role === "admin" && (
+          <View style={styles.viewBtn}>
+            <Pressable style={styles.btnCrear}>
+              <Image source={require("../../../../../assets/img/create.png")}/>
+            </Pressable>
+          </View>
+        )
+      }
     </View>
   );
 }

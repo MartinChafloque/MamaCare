@@ -30,5 +30,30 @@ export const styles = StyleSheet.create({
     },
     txtTemas: font => ({
       fontFamily: font,
-  })
+    }),
+
+    viewBtn: {
+      paddingTop: 15,
+      alignItems: "center",
+      justifyContent: "center",
+      flexDirection: "row",
+    },
+
+    btnModificar: {
+      alignItems: "center",
+      justifyContent: "center",
+      marginRight: 50,
+      minWidth: 33,
+      minHeight: 31,
+      borderRadius: 50,
+    },
+
+    btnEliminar: {
+      alignItems: "center",
+      justifyContent: "center",
+      marginLeft: 50,
+      minWidth: 33,
+      minHeight: 31,
+      borderRadius: 50,
+    }
 });

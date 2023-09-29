@@ -1,6 +1,5 @@
-import { createUserWithEmailAndPassword, signOut, signInWithEmailAndPassword, sendEmailVerification, PhoneMultiFactorGenerator, sendPasswordResetEmail } from "firebase/auth"
+import { createUserWithEmailAndPassword, signOut, signInWithEmailAndPassword, sendEmailVerification, sendPasswordResetEmail, updateCurrentUser } from "firebase/auth"
 import Toast from "react-native-toast-message";
-import { PhoneAuthProvider } from "firebase/auth";
 import { auth } from "./firebase";
 
 
@@ -86,22 +85,6 @@ export const signIn = async (email, password) => {
         return false;
     }
 }
-
-/*export const phoneCodeVerification = async (resolver, verificationId, verificationCode) => {
-    const cred = PhoneAuthProvider.credential(verificationId, verificationCode);
-    const multiFactorAssertion = PhoneMultiFactorGenerator.assertion(cred);
-    const userCredentials = await resolver.resolveSignIn(multiFactorAssertion);
-    if(!userCredentials.user.emailVerified) {
-        Toast.show({
-            type: "error",
-            position: "bottom",
-            text1: "No has verificado tu correo electrónico.",
-          });
-        logout();
-        return false;
-    }
-    return true;
-}*/
 
 export const resetPassword = async (email) =>{
     try{

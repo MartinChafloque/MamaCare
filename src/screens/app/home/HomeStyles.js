@@ -40,8 +40,8 @@ export const styles = StyleSheet.create({
     }),
 
     fraseTextCon:{
-        maxWidth: 270,
-        marginTop: 30
+        width: 270,
+        padding: 20
     },
 
     container: {
@@ -60,10 +60,12 @@ export const styles = StyleSheet.create({
 
     fraseContent:{
         marginTop:10,
+        paddingLeft: 10,
+        paddingRight: 10,
         backgroundColor: "rgba(244, 186, 202, 0.5)",
         opacity: 50,
         width: 336,
-        height:133,
+        minHeight:133,
         borderRadius:15,
         flexDirection: "row",
         justifyContent:"space-around"

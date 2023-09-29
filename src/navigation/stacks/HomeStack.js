@@ -7,7 +7,8 @@ import { Faq } from "../../screens/app/faq/Faq"
 import { Chat } from "../../screens/app/faq/Chat";
 import { Informacion } from "../../screens/app/educativo/informacion/Informacion";
 import { Tratamientos } from "../../screens/app/educativo/tratamientos/Tratamientos";
-import { Apoyo } from "../../screens/app/bienestar/apoyoYsuperacion/Apoyo";
+import { Apoyo } from "../../screens/app/bienestar/apoyoysuperacion/Apoyo";
+import { Pressable, Image } from "react-native";
 
 const Stack = createNativeStackNavigator();
 

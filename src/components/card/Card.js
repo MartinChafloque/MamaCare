@@ -1,4 +1,4 @@
-import { View, Text } from 'react-native'
+import { View, Text, Pressable, Image } from 'react-native'
 import React from 'react'
 import { useFonts } from "expo-font"
 import {styles} from "./CardStyles"
@@ -6,8 +6,8 @@ import {styles} from "./CardStyles"
 
 import {VideoPlayer} from "../VideoPlayer"
 
-export  function Card(props) {
-  const {contenido, index} = props;
+export  function Card( props ) {
+  const { contenido, index, role } = props;
 
   const [loaded] = useFonts({
     Miller: require('../../../assets/fonts/MillerBannerRoman.ttf'),
@@ -29,6 +29,18 @@ export  function Card(props) {
       <VideoPlayer videoURL={contenido.videoURL}/>
       {/* Renderiza la descripción del contenido */}
       <Text style={[styles.txtTemas("Miller"),styles.cardContent]}>{contenido.descripcion}</Text>
+      {
+        role === "admin" && (
+          <View style={styles.viewBtn}>
+            <Pressable style={styles.btnModificar}>
+              <Image source={require("../../../assets/img/edit.png")}/>
+            </Pressable>
+            <Pressable style={styles.btnEliminar}>
+              <Image source={require("../../../assets/img/close.png")}/>
+            </Pressable>
+          </View>
+        )
+      }
     </View>
   )
 }

@@ -54,7 +54,8 @@ export function Register() {
         id: response,
         name: name,
         email: email,
-        faqs: 0
+        faqs: 0,
+        role: "paciente"
       }
       updateData({ ["/usuarios/" + response]: newUser });
     }
