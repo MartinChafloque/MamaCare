@@ -9,9 +9,8 @@ export const styles = StyleSheet.create({
         backgroundColor: "white",
         alignItems: "center",
         justifyContent: "space-evenly",
-        minHeight: windowHeight + 62,
+        minHeight: "100%",
         minWidth: windowWidth,
-        paddingBottom: 120
     },
 
     txtTitle: font => ({

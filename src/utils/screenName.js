@@ -5,11 +5,18 @@ const inicioStack = {
     bienestar: "bienestar",
     faq: "faq",
     chat: "chat",
+    video: "video",
     //educativo
     informacion: "informacion",
+    recuperacion: "recuperacion",
+    sintomas: "sintomas",
+    nutricion: "nutricion",
     tratamientos: "tratamientos",
     //bienestar
+    energia: "energia",
     apoyo: "apoyo",
+    equilibrio: "equilibrio",
+    circulo: "circulo"
 };
 
 const agendaStack = {

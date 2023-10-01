@@ -29,4 +29,17 @@ export const styles = StyleSheet.create({
       shadowOpacity: 0.2,
       elevation: 2,
     },
+
+    viewAviso: {
+      padding: 5,
+      minHeight: "100%",
+      justifyContent: "center",
+      alignItems: "center",
+    },
+
+    txtAviso: font => ({
+      fontFamily: font,
+      fontSize: 25,
+      textAlign: "center"
+  })
 });

@@ -44,17 +44,17 @@ export function Educativo() {
                 Información general
           </Text>
         </Pressable>
-        <Pressable style={styles.recursosView}>
+        <Pressable style={styles.recursosView} onPress={() => navigation.navigate(screen.inicio.recuperacion, { role: getRol() })}>
           <Text  style={styles.txtTemas("MillerBold")}>
                 Recuperación y recursos
           </Text>
         </Pressable>
-        <Pressable style={styles.sintomasView}>
+        <Pressable style={styles.sintomasView} onPress={() => navigation.navigate(screen.inicio.sintomas, { role: getRol() })}>
           <Text  style={styles.txtTemas("MillerBold")}>
                 Síntomas y cuidados físicos
           </Text>
         </Pressable>
-        <Pressable style={styles.nutricionView}>
+        <Pressable style={styles.nutricionView} onPress={() => navigation.navigate(screen.inicio.nutricion, { role: getRol() })}>
           <Text  style={styles.txtTemas("MillerBold")}>
                 Nutrición vital
           </Text>

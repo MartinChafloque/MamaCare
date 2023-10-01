@@ -39,7 +39,7 @@ export function Bienestar() {
   return (
     <ScrollView>
       <View style={styles.content}>
-        <Pressable style={styles.energiaView}>
+        <Pressable style={styles.energiaView} onPress={() => navigation.navigate(screen.inicio.energia, { role: getRol() })}>
           <Text  style={styles.txtTemas("MillerBold")}>
                 Energía en movimiento
           </Text>
@@ -49,12 +49,12 @@ export function Bienestar() {
                 Caminando juntos{"\n"}apoyo y superación
           </Text>
         </Pressable>
-        <Pressable style={styles.equilibrioView}>
+        <Pressable style={styles.equilibrioView} onPress={() => navigation.navigate(screen.inicio.equilibrio, { role: getRol() })}>
           <Text  style={styles.txtTemas("MillerBold")}>
                 Equilibrio interno
           </Text>
         </Pressable>
-        <Pressable style={styles.apoyoView}>
+        <Pressable style={styles.apoyoView} onPress={() => navigation.navigate(screen.inicio.circulo, { role: getRol() })}>
           <Text  style={styles.txtTemas("MillerBold")}>
                 Círculo de apoyo
           </Text>

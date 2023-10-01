@@ -31,6 +31,18 @@
         "projectId": "a3107027-029d-4a7f-a2e7-9f53d42a720b"
       }
     },
-    "owner": "martinchafo"
+    "owner": "martinchafo",
+    "plugins": [
+      [
+        "expo-image-picker",
+        {
+          "photosPermission": "custom photos permission",
+          "cameraPermission": "Allow $(PRODUCT_NAME) to open the camera",
+
+          "//": "Disables the microphone permission",
+          "microphonePermission": false
+        }
+      ]
+    ]
   }
 }

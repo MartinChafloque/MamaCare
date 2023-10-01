@@ -7,8 +7,14 @@ import { Faq } from "../../screens/app/faq/Faq"
 import { Chat } from "../../screens/app/faq/Chat";
 import { Informacion } from "../../screens/app/educativo/informacion/Informacion";
 import { Tratamientos } from "../../screens/app/educativo/tratamientos/Tratamientos";
-import { Apoyo } from "../../screens/app/bienestar/apoyoysuperacion/Apoyo";
-import { Pressable, Image } from "react-native";
+import { Apoyo } from "../../screens/app/bienestar/apoyo/Apoyo";
+import { VideoForm } from "../../screens/app/video/VideoForm";
+import { Circulo } from "../../screens/app/bienestar/circulo/Circulo";
+import { Energia } from "../../screens/app/bienestar/energia/Energia";
+import { Equilibrio } from "../../screens/app/bienestar/equilibrio/Equilibrio";
+import { Recuperacion } from "../../screens/app/educativo/recuperacion/Recuperacion";
+import { Sintomas } from "../../screens/app/educativo/sintomas/Sintomas";
+import { Nutricion } from "../../screens/app/educativo/nutricion/Nutricion";
 
 const Stack = createNativeStackNavigator();
 
@@ -47,7 +53,61 @@ export default function HomeStack() {
           headerTitle: "Información General",
           headerTitleStyle: {
             fontFamily:"MillerBlack",
-            fontSize: 23,
+            fontSize: 18,
+            color: '#3F0117',
+          },
+          headerStyle: {
+            backgroundColor: 'white',
+          },
+          headerTitleAlign: 'center',
+        }}
+      />
+      <Stack.Screen
+        name={screen.inicio.recuperacion}
+        component={Recuperacion}
+        options={{
+          headerShown: true,
+          headerBackVisible: false, // Oculta la flecha de retroceso
+          headerTitle: "Recuperación y Recursos",
+          headerTitleStyle: {
+            fontFamily:"MillerBlack",
+            fontSize: 18,
+            color: '#3F0117',
+          },
+          headerStyle: {
+            backgroundColor: 'white',
+          },
+          headerTitleAlign: 'center',
+        }}
+      />
+      <Stack.Screen
+        name={screen.inicio.sintomas}
+        component={Sintomas}
+        options={{
+          headerShown: true,
+          headerBackVisible: false, // Oculta la flecha de retroceso
+          headerTitle: "Síntomas y Cuidados Físicos",
+          headerTitleStyle: {
+            fontFamily:"MillerBlack",
+            fontSize: 18,
+            color: '#3F0117',
+          },
+          headerStyle: {
+            backgroundColor: 'white',
+          },
+          headerTitleAlign: 'center',
+        }}
+      />
+      <Stack.Screen
+        name={screen.inicio.nutricion}
+        component={Nutricion}
+        options={{
+          headerShown: true,
+          headerBackVisible: false, // Oculta la flecha de retroceso
+          headerTitle: "Nutrición Vital",
+          headerTitleStyle: {
+            fontFamily:"MillerBlack",
+            fontSize: 18,
             color: '#3F0117',
           },
           headerStyle: {
@@ -65,7 +125,7 @@ export default function HomeStack() {
           headerTitle: "Tratamientos y Enfoque",
           headerTitleStyle: {
             fontFamily:"MillerBlack",
-            fontSize: 23,
+            fontSize: 18,
             color: '#3F0117',
           },
           headerStyle: {
@@ -74,6 +134,7 @@ export default function HomeStack() {
           headerTitleAlign: 'center',
         }}
       />
+      {/* Bienestar */}
       <Stack.Screen
         name={screen.inicio.apoyo}
         component={Apoyo}
@@ -89,7 +150,67 @@ export default function HomeStack() {
           headerStyle: {
             backgroundColor: 'white',
           },
+          headerTitleAlign: 'center',
         }}
+      />
+      <Stack.Screen
+        name={screen.inicio.circulo}
+        component={Circulo}
+        options={{
+          headerShown: true,
+          headerBackVisible: false, // Oculta la flecha de retroceso
+          headerTitle: "Círculo de Apoyo",
+          headerTitleStyle: {
+            fontFamily:"MillerBlack",
+            fontSize: 18,
+            color: '#3F0117',
+          },
+          headerStyle: {
+            backgroundColor: 'white',
+          },
+          headerTitleAlign: 'center',
+        }}
+      />
+      <Stack.Screen
+        name={screen.inicio.energia}
+        component={Energia}
+        options={{
+          headerShown: true,
+          headerBackVisible: false, // Oculta la flecha de retroceso
+          headerTitle: "Energía en Movimiento",
+          headerTitleStyle: {
+            fontFamily:"MillerBlack",
+            fontSize: 18,
+            color: '#3F0117',
+          },
+          headerStyle: {
+            backgroundColor: 'white',
+          },
+          headerTitleAlign: 'center',
+        }}
+      />
+      <Stack.Screen
+        name={screen.inicio.equilibrio}
+        component={Equilibrio}
+        options={{
+          headerShown: true,
+          headerBackVisible: false, // Oculta la flecha de retroceso
+          headerTitle: "Equilibrio Interno",
+          headerTitleStyle: {
+            fontFamily:"MillerBlack",
+            fontSize: 18,
+            color: '#3F0117',
+          },
+          headerStyle: {
+            backgroundColor: 'white',
+          },
+          headerTitleAlign: 'center',
+        }}
+      />
+      {/* Video upload */}
+      <Stack.Screen
+        name={screen.inicio.video}
+        component={VideoForm}
       />
     </Stack.Navigator>
   );

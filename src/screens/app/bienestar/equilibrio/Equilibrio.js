@@ -3,11 +3,11 @@ import { View, FlatList, Pressable, Image, Text } from 'react-native'
 import { useNavigation } from "@react-navigation/native";
 import { useFonts } from 'expo-font';
 import {screen} from "../../../../utils/screenName"
-import { styles } from "./TratamientosStyles"
+import { styles } from "./EquilibrioStyles"
 import { Card } from "../../../../components/card/Card"
 import { useDbData } from '../../../../firebase/useDbData';
 
-export  function Tratamientos({ route }) {
+export  function Equilibrio({ route }) {
 
   const navigation = useNavigation();
   const { role } = route.params;
@@ -26,7 +26,7 @@ export  function Tratamientos({ route }) {
   }
 
   if(!data) return null; 
-  const datosFiltrados = Object.values(data).filter((val) => val.ubicacion === 'tratamientos');
+  const datosFiltrados = Object.values(data).filter((val) => val.ubicacion === 'equilibrio');
 
   const RenderItem = ({ item, index }) => {
     return <Card contenido={item} index={index} role={role} />;
@@ -38,7 +38,7 @@ export  function Tratamientos({ route }) {
       {
         datosFiltrados.length === 0 ? (
           <View style={styles.viewAviso}>
-            <Text style={styles.txtAviso("Miller")}>Aún no hay videos en la sección de 'Tratamientos y enfoque'</Text>
+            <Text style={styles.txtAviso("Miller")}>Aún no hay videos en la sección de 'Equilibrio interno'</Text>
           </View>
         ) : (
           <FlatList
@@ -51,7 +51,7 @@ export  function Tratamientos({ route }) {
       {
         role === "admin" && (
           <View style={styles.viewBtn}>
-            <Pressable style={styles.btnCrear} onPress={() => navigation.navigate( screen.inicio.video, { isEdit: false, videoInfo: null, ubicacion: "tratamientos" } )}>
+            <Pressable style={styles.btnCrear} onPress={() => navigation.navigate( screen.inicio.video, { isEdit: false, videoInfo: null, ubicacion: "equilibrio" } )}>
               <Image source={require("../../../../../assets/img/create.png")}/>
             </Pressable>
           </View>
