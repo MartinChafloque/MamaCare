@@ -22,7 +22,7 @@ export const styles = StyleSheet.create({
         marginBottom: 20
     }),
 
-    inputTitle: font => ({
+    inputAutor: font => ({
         fontFamily: font,
         fontSize: 16,
         marginBottom: 15,
@@ -41,7 +41,7 @@ export const styles = StyleSheet.create({
         elevation: 10,
     }),
 
-    inputDesc: font => ({
+    inputFrase: font => ({
         fontFamily: font,
         fontSize: 16,
         marginBottom: 15,
@@ -59,24 +59,6 @@ export const styles = StyleSheet.create({
         shadowRadius: 6.27,
         elevation: 10,
     }),
-
-    btnSelect: {
-        backgroundColor: "#FC86BF",
-        minHeight: 35,
-        minWidth: "100%",
-        marginTop: 8,
-        borderRadius: 10,
-        alignItems: "center",
-        justifyContent: "center",
-        shadowColor: "#000",
-        shadowOffset: {
-            width: 0,
-            height: 5,
-        },
-        shadowOpacity: 0.34,
-        shadowRadius: 6.27,
-        elevation: 10,
-    },
 
     btnUpload: {
         backgroundColor: "#FC86BF",

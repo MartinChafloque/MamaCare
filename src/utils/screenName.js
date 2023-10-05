@@ -29,6 +29,9 @@ const notificacionesStack = {
 
 const perfilStack = {
     tab: "PerfilTab",
+    perfil: "perfil",
+    frases: "frases",
+    frase: "frase"
 };
 
 const authStack = {

@@ -49,7 +49,7 @@ export function Faq() {
             date: moment().tz("America/Bogota").format('LLL'),
             chatCount: usuario.faqs + 1,
             messages: [
-                {role: "system", content: "The following chat is mainly for users that are going to make questions about health, specifically questions about breast cancer and how to deal with the stages of it.From now on, the user questions and your answers should be completely in spanish."},
+                {role: "system", content: "The following chat is mainly for users that are going to make questions about health, specifically questions about breast cancer and how to deal with the stages of it. Do not recommend or prescribe any sort of medications even if the user asks for it. From now on, the user questions and your answers should be completely in spanish."},
             ]
         }
         updateData({ ["/usuarios/" + user.uid]: {...usuario, faqs: usuario.faqs + 1 } });
@@ -68,6 +68,10 @@ export function Faq() {
                 <Text style={styles.txtTitle("MillerBold")}>
                     Preguntas Frecuentes
                 </Text>
+                <View style={styles.anuncio}>
+                    <View style={styles.imgAnuncio}><Image source={require("../../../../assets/img/chatMessage.png")}></Image></View>
+                    <View style={styles.anuncioFrase}><Text style={styles.txtAnuncio("Miller")}>Recuerda, la información de este chatbot no sustituye el asesoramiento médico. Consulta a un profesional de la salud para una evaluación precisa.</Text></View>
+                </View>
                 <View style={styles.buscador}>
                     <Text style={styles.txtSubTitle("MillerBold")}>
                         ¿Cuál es tu pregunta?
@@ -97,6 +101,5 @@ export function Faq() {
                 </View>
             </View>
         </ScrollView>
-
     )
 }

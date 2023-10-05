@@ -26,6 +26,7 @@ export  function Apoyo({ route }) {
   }
 
   if(!data) return null; 
+  
   const datosFiltrados = Object.values(data).filter((val) => val.ubicacion === 'apoyo');
 
   const RenderItem = ({ item, index }) => {

@@ -1,13 +1,16 @@
-import {View, Text, ScrollView, Image, Pressable} from "react-native";
 import React from 'react';
+import {View, Text, Image, Pressable} from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import { useFonts } from 'expo-font';
 import { styles } from "./HomeStyles";
 import {screen} from "../../../utils/screenName"
+import { useDbData } from '../../../firebase/useDbData';
 
 export function Home() {
 
   const navigation = useNavigation();
+  const [ data ] = useDbData("/frase-del-dia");
+
 
   const [loaded] = useFonts({
     Miller: require('../../../../assets/fonts/MillerBannerRoman.ttf'),
@@ -17,7 +20,8 @@ export function Home() {
 
   });
 
-  if (!loaded) {
+
+  if (!loaded || !data) {
       return null;
   }
 
@@ -30,7 +34,7 @@ export function Home() {
         <View style={styles.container}>
           <View style={styles.leftContainer}>
             <Pressable style={styles.eduView} onPress={() => navigation.navigate(screen.inicio.educativo)}>
-              <View style={styles.images}>
+              <View style={styles.imageEduc}>
                 <Image source={require("../../../../assets/img/homeEd.png")}/>
               </View>
               <Text  style={styles.txtModulos("MillerBold")}>
@@ -48,7 +52,7 @@ export function Home() {
           </View>
           <View style={styles.rightContainer}> 
             <Pressable style={styles.gameView}>
-              <View style={styles.images}>
+              <View style={styles.imageGame}>
                 <Image source={require("../../../../assets/img/homeGame.png")}/>
               </View>
               <Text style={styles.txtModulos("MillerBold")}>
@@ -73,8 +77,7 @@ export function Home() {
           </View>
           <View style={styles.fraseContent}>
             <View style={styles.starLeft}><Image source={require("../../../../assets/img/star.png")}/></View>
-            <View style={styles.fraseTextCon}><Text style={styles.txtFrase("MillerLight")}>"La valentía no es la ausencia de miedo, sino la determinación de seguir adelante
-               a pesar de él" -Ambrose Redmoon</Text></View>
+            <View style={styles.fraseTextCon}><Text style={styles.txtFrase("MillerLight")}>"{data.texto}" - {data.autor}</Text></View>
             <View style={styles.starRight}><Image source={require("../../../../assets/img/star.png")}/></View>
           </View>
         </View>

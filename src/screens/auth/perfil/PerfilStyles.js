@@ -84,5 +84,11 @@ export const styles = StyleSheet.create({
     txtEmail: font => ({
         fontFamily: font,
         fontSize: 14
+    }),
+
+    txtFrases: font => ({
+        fontFamily: font,
+        fontSize: 20,
+        textDecorationLine: "underline"
     })
 });

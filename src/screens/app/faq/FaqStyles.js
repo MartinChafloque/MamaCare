@@ -14,7 +14,7 @@ export const styles = StyleSheet.create({
 
     buscador: {
         minWidth: "100%",
-        marginTop: 30
+        marginTop: 25
     },
 
     searchContainer: {
@@ -52,6 +52,21 @@ export const styles = StyleSheet.create({
         borderRadius: 10,
     },
 
+    anuncio: {
+        marginTop: 20,
+        alignItems: "center",
+        backgroundColor: "#FFCCEF",
+        maxWidth: 353,
+        minHeight: 100,
+        borderRadius: 10,
+        flexDirection: "row"
+    },
+
+    anuncioFrase: {
+        marginLeft: 6,
+        paddingRight: 60
+    },
+
     topQ: {
         flexDirection: "row",
     },
@@ -66,12 +81,22 @@ export const styles = StyleSheet.create({
         marginTop: 12,
         marginLeft: 5,
     },
+
+    imgAnuncio: {
+        justifyContent: "center",
+        marginLeft: 5,
+    },
     
     pregunta: {
         marginTop: 8,
         marginLeft: 6,
         paddingRight: 50
     },
+
+    txtAnuncio: font => ({
+        fontFamily: font,
+        fontSize: 14,
+    }),
 
     txtPreg: font => ({
         fontFamily: font,

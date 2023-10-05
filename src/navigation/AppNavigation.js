@@ -4,9 +4,8 @@ import { useFonts } from 'expo-font';
 import { Agenda } from "../screens/app/Agenda";
 import { Notificaciones } from "../screens/app/Notificaciones";
 import { screen } from "../utils";
-import { Home } from "../screens/app/home/Home";
-import { Perfil } from "../screens/auth/perfil/Perfil";
 import HomeStack from "./stacks/HomeStack";
+import PerfilStack from "./stacks/PerfilStack";
 
 const Tab = createBottomTabNavigator();
 
@@ -40,7 +39,7 @@ export function AppNavigation(){
             <Tab.Screen name={screen.inicio.tab} component={HomeStack} options={{title: "Inicio"}} />
             <Tab.Screen name={screen.agenda.tab} component={Agenda} options={{title: "Agenda"}} />
             <Tab.Screen name={screen.notificaciones.tab} component={Notificaciones} options={{title: "Notificaciones"}}/>
-            <Tab.Screen name={screen.perfil.tab} component={Perfil} options={{title: "Perfil"}} />
+            <Tab.Screen name={screen.perfil.tab} component={PerfilStack} options={{title: "Perfil"}} />
         </Tab.Navigator>
     );
 }

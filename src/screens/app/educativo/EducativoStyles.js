@@ -16,7 +16,9 @@ export const styles = StyleSheet.create({
     },
 
     infoGeneralView:{
-        justifyContent:"center",
+        justifyContent: "space-between",
+        alignItems: "center",
+        flexDirection: "row",
         paddingLeft: 8,
         width:356,
         marginBottom: 10,
@@ -34,8 +36,18 @@ export const styles = StyleSheet.create({
         elevation: 5,
     },
 
+    imgEd: {
+        marginRight: 40,
+    },
+
+    imgEd2: {
+        marginRight: 30,
+    },
+
     recursosView:{
-        justifyContent:"center",
+        justifyContent: "space-between",
+        alignItems: "center",
+        flexDirection: "row",
         paddingLeft: 8,
         width:356,
         marginBottom: 10,
@@ -53,7 +65,9 @@ export const styles = StyleSheet.create({
     },
 
     sintomasView:{
-        justifyContent:"center",
+        justifyContent: "space-between",
+        alignItems: "center",
+        flexDirection: "row",
         paddingLeft: 8,
         width:356,
         marginBottom: 10,
@@ -71,7 +85,9 @@ export const styles = StyleSheet.create({
     },
 
     nutricionView:{
-        justifyContent:"center",
+        justifyContent: "space-between",
+        alignItems: "center",
+        flexDirection: "row",
         paddingLeft: 8,
         width:356,
         marginBottom: 10,
@@ -89,7 +105,9 @@ export const styles = StyleSheet.create({
     },
 
     tratamientosView:{
-        justifyContent:"center",
+        justifyContent: "space-between",
+        alignItems: "center",
+        flexDirection: "row",
         paddingLeft: 8,
         width:356,
         marginBottom: 10,

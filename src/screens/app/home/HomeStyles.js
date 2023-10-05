@@ -40,7 +40,7 @@ export const styles = StyleSheet.create({
 
     fraseTextCon:{
         width: 270,
-        padding: 20
+        padding: 10
     },
 
     container: {
@@ -158,9 +158,20 @@ export const styles = StyleSheet.create({
         marginBottom: 10
     },
 
-    imageHealth:{
+    imageGame: {
+        height: 70,
+        alignItems: "center",
+    },
+
+    imageEduc: {
         alignItems: "center",
         marginBottom: 15,
+        marginLeft: 15
+    },
+
+    imageHealth:{
+        alignItems: "center",
+        marginBottom: 10,
         marginLeft: 5
     }
 });

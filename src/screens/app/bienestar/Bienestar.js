@@ -1,3 +1,4 @@
+import React from 'react';
 import {View, Text, ScrollView, Image, Pressable} from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import { useFonts } from 'expo-font';
@@ -37,29 +38,25 @@ export function Bienestar() {
   if(!user || !data) return null;
 
   return (
-    <ScrollView>
+    <React.StrictMode>
       <View style={styles.content}>
         <Pressable style={styles.energiaView} onPress={() => navigation.navigate(screen.inicio.energia, { role: getRol() })}>
-          <Text  style={styles.txtTemas("MillerBold")}>
-                Energía en movimiento
-          </Text>
+          <View><Text style={styles.txtTemas("MillerBold")}>Energía en movimiento</Text></View>
+          <View style={styles.imgEd}><Image source={require("../../../../assets/img/energ.png")}></Image></View>
         </Pressable>
         <Pressable style={styles.caminandoView} onPress={() => navigation.navigate(screen.inicio.apoyo, { role: getRol() })}>
-          <Text  style={styles.txtTemas("MillerBold")}>
-                Caminando juntos{"\n"}apoyo y superación
-          </Text>
+          <View><Text style={styles.txtTemas("MillerBold")}>Caminando juntos{"\n"}apoyo y superación</Text></View>
+          <View style={styles.imgEd}><Image source={require("../../../../assets/img/caminando.png")}></Image></View>
         </Pressable>
         <Pressable style={styles.equilibrioView} onPress={() => navigation.navigate(screen.inicio.equilibrio, { role: getRol() })}>
-          <Text  style={styles.txtTemas("MillerBold")}>
-                Equilibrio interno
-          </Text>
+          <View><Text style={styles.txtTemas("MillerBold")}>Equilibrio interno</Text></View>
+          <View style={styles.imgEd}><Image source={require("../../../../assets/img/balance.png")}></Image></View>
         </Pressable>
         <Pressable style={styles.apoyoView} onPress={() => navigation.navigate(screen.inicio.circulo, { role: getRol() })}>
-          <Text  style={styles.txtTemas("MillerBold")}>
-                Círculo de apoyo
-          </Text>
+          <View><Text style={styles.txtTemas("MillerBold")}>Círculo de apoyo</Text></View>
+          <View style={styles.imgEd}><Image source={require("../../../../assets/img/circ.png")}></Image></View>
         </Pressable>
       </View>
-    </ScrollView>
+    </React.StrictMode>
   )
 }

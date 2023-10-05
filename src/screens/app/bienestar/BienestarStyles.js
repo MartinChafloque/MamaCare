@@ -16,7 +16,9 @@ export const styles = StyleSheet.create({
     },
 
     energiaView:{
-        justifyContent:"center",
+        justifyContent: "space-between",
+        alignItems: "center",
+        flexDirection: "row",
         paddingLeft: 8,
         width:356,
         marginBottom: 10,
@@ -34,8 +36,14 @@ export const styles = StyleSheet.create({
         elevation: 5,
     },
 
+    imgEd: {
+        marginRight: 40,
+    },
+
     caminandoView:{
-        justifyContent:"center",
+        justifyContent: "space-between",
+        alignItems: "center",
+        flexDirection: "row",
         paddingLeft: 8,
         width:356,
         marginBottom: 10,
@@ -53,7 +61,9 @@ export const styles = StyleSheet.create({
     },
 
     equilibrioView:{
-        justifyContent:"center",
+        justifyContent: "space-between",
+        alignItems: "center",
+        flexDirection: "row",
         paddingLeft: 8,
         width:356,
         marginBottom: 10,
@@ -71,7 +81,9 @@ export const styles = StyleSheet.create({
     },
 
     apoyoView:{
-        justifyContent:"center",
+        justifyContent: "space-between",
+        alignItems: "center",
+        flexDirection: "row",
         paddingLeft: 8,
         width:356,
         marginBottom: 10,
