@@ -11,11 +11,7 @@ export function CardFrase({frase}) {
 
 
   const [loaded] = useFonts({
-    Miller: require('../../../../assets/fonts/MillerBannerRoman.ttf'),
-    MillerLight: require('../../../../assets/fonts/MillerBannerLight.ttf'),
-    MillerBold: require('../../../../assets/fonts/MillerBannerBold.ttf'),
-    MillerBlack: require('../../../../assets/fonts/MillerBannerBlack.ttf'),
-
+    sans: require('../../../../assets/fonts/OpenSans-Regular.ttf')
   });
 
   if (!loaded) {
@@ -33,7 +29,7 @@ export function CardFrase({frase}) {
 
   return (
     <View style={styles.frases}>
-      <View style={styles.textFrase}><Text style={styles.text("Miller")}>{frase.texto} - {frase.autor}</Text></View>
+      <View style={styles.textFrase}><Text style={styles.text("sans")}>{frase.texto} - {frase.autor}</Text></View>
       <Pressable style={styles.delete} onPress={handleDelete}><Image source={require("../../../../assets/img/close.png")}/></Pressable>
     </View>
   )

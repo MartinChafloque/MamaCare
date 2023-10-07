@@ -18,10 +18,7 @@ export function Chat({ route }) {
 
     
     const [loaded] = useFonts({
-        Miller: require('../../../../assets/fonts/MillerBannerRoman.ttf'),
-        MillerLight: require('../../../../assets/fonts/MillerBannerLight.ttf'),
-        MillerBold: require('../../../../assets/fonts/MillerBannerBold.ttf'),
-        MillerBlack: require('../../../../assets/fonts/MillerBannerBlack.ttf'),
+        sans: require('../../../../assets/fonts/OpenSans-Regular.ttf')
     });
 
     useEffect(() => {
@@ -69,7 +66,7 @@ export function Chat({ route }) {
         <View style={role === "user" ? styles.ownMessageContainer : styles.botMessageContainer}>
             <TouchableHighlight style={role === "user" ? styles.ownMessage : styles.botMessage}>
                 <View>
-                    <Text style={styles.message("Miller")}>{content}</Text>
+                    <Text style={styles.message("sans")}>{content}</Text>
                 </View>
             </TouchableHighlight>
         </View>

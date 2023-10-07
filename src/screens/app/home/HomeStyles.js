@@ -1,7 +1,6 @@
 import { StyleSheet, Dimensions } from "react-native";
 
 const windowWidth = Dimensions.get('window').width;
-const windowHeight = Dimensions.get('window').height;
 
 export const styles = StyleSheet.create({
 
@@ -34,7 +33,7 @@ export const styles = StyleSheet.create({
 
     txtFrase: font => ({
         fontFamily: font,
-        fontSize: 17,
+        fontSize: 15,
         textAlign: "center"
     }),
 

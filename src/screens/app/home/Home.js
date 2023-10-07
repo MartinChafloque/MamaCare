@@ -13,11 +13,9 @@ export function Home() {
 
 
   const [loaded] = useFonts({
-    Miller: require('../../../../assets/fonts/MillerBannerRoman.ttf'),
-    MillerLight: require('../../../../assets/fonts/MillerBannerLight.ttf'),
-    MillerBold: require('../../../../assets/fonts/MillerBannerBold.ttf'),
-    MillerBlack: require('../../../../assets/fonts/MillerBannerBlack.ttf'),
-
+    sans: require('../../../../assets/fonts/OpenSans-Regular.ttf'),
+    sansBold: require('../../../../assets/fonts/OpenSans-Bold.ttf'),
+    sansLight: require('../../../../assets/fonts/OpenSans-Light.ttf'),
   });
 
 
@@ -28,7 +26,7 @@ export function Home() {
   return (
     <React.StrictMode>
       <View style={styles.content}>
-        <Text style={styles.txtTitle("Miller")}>
+        <Text style={styles.txtTitle("sans")}>
           Mama Care
         </Text>
         <View style={styles.container}>
@@ -37,7 +35,7 @@ export function Home() {
               <View style={styles.imageEduc}>
                 <Image source={require("../../../../assets/img/homeEd.png")}/>
               </View>
-              <Text  style={styles.txtModulos("MillerBold")}>
+              <Text  style={styles.txtModulos("sansBold")}>
                 Módulo{"\n"}Educativo
               </Text>
             </Pressable>
@@ -45,7 +43,7 @@ export function Home() {
               <View style={styles.images}>
                 <Image source={require("../../../../assets/img/homeFAQ.png")}/>
               </View>
-              <Text style={styles.txtModulos("MillerBold")}>
+              <Text style={styles.txtModulos("sansBold")}>
                 Preguntas{"\n"}Frecuentes
               </Text>
             </Pressable>  
@@ -55,7 +53,7 @@ export function Home() {
               <View style={styles.imageGame}>
                 <Image source={require("../../../../assets/img/homeGame.png")}/>
               </View>
-              <Text style={styles.txtModulos("MillerBold")}>
+              <Text style={styles.txtModulos("sansBold")}>
                 Explicando con{"\n"}amor
               </Text>
             </Pressable>
@@ -63,7 +61,7 @@ export function Home() {
               <View style={styles.imageHealth}>
                 <Image source={require("../../../../assets/img/homeHealth.png")}/>
               </View>
-              <Text style={styles.txtModulos("MillerBold")}>
+              <Text style={styles.txtModulos("sansBold")}>
                 Módulo de{"\n"}Bienestar
               </Text>
             </Pressable>
@@ -71,13 +69,13 @@ export function Home() {
         </View>
         <View style={styles.fraseContainer}>
           <View> 
-            <Text style={styles.txtFraseTitle("Miller")}>
+            <Text style={styles.txtFraseTitle("sans")}>
               Frase del día
             </Text> 
           </View>
           <View style={styles.fraseContent}>
             <View style={styles.starLeft}><Image source={require("../../../../assets/img/star.png")}/></View>
-            <View style={styles.fraseTextCon}><Text style={styles.txtFrase("MillerLight")}>"{data.texto}" - {data.autor}</Text></View>
+            <View style={styles.fraseTextCon}><Text style={styles.txtFrase("sansLight")}>"{data.texto}" - {data.autor}</Text></View>
             <View style={styles.starRight}><Image source={require("../../../../assets/img/star.png")}/></View>
           </View>
         </View>

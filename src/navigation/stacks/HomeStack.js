@@ -5,6 +5,7 @@ import { screen } from "../../utils/screenName";
 import { Bienestar } from "../../screens/app/bienestar/Bienestar";
 import { Faq } from "../../screens/app/faq/Faq"
 import { Chat } from "../../screens/app/faq/Chat";
+import { useFonts } from 'expo-font';
 import { Informacion } from "../../screens/app/educativo/informacion/Informacion";
 import { Tratamientos } from "../../screens/app/educativo/tratamientos/Tratamientos";
 import { Apoyo } from "../../screens/app/bienestar/apoyo/Apoyo";
@@ -19,6 +20,15 @@ import { Nutricion } from "../../screens/app/educativo/nutricion/Nutricion";
 const Stack = createNativeStackNavigator();
 
 export default function HomeStack() {
+
+  const [loaded] = useFonts({
+    sansBold: require('../../../assets/fonts/OpenSans-Bold.ttf'),
+  });
+  
+  if (!loaded) {
+    return null;
+  }
+
   return (
     <Stack.Navigator screenOptions={() => ({
         headerShown: false,
@@ -52,7 +62,7 @@ export default function HomeStack() {
           headerBackVisible: false, // Oculta la flecha de retroceso
           headerTitle: "Información General",
           headerTitleStyle: {
-            fontFamily:"MillerBlack",
+            fontFamily:"sansBold",
             fontSize: 18,
             color: '#3F0117',
           },
@@ -70,7 +80,7 @@ export default function HomeStack() {
           headerBackVisible: false, // Oculta la flecha de retroceso
           headerTitle: "Recuperación y Recursos",
           headerTitleStyle: {
-            fontFamily:"MillerBlack",
+            fontFamily:"sansBold",
             fontSize: 18,
             color: '#3F0117',
           },
@@ -88,7 +98,7 @@ export default function HomeStack() {
           headerBackVisible: false, // Oculta la flecha de retroceso
           headerTitle: "Síntomas y Cuidados Físicos",
           headerTitleStyle: {
-            fontFamily:"MillerBlack",
+            fontFamily:"sansBold",
             fontSize: 18,
             color: '#3F0117',
           },
@@ -106,7 +116,7 @@ export default function HomeStack() {
           headerBackVisible: false, // Oculta la flecha de retroceso
           headerTitle: "Nutrición Vital",
           headerTitleStyle: {
-            fontFamily:"MillerBlack",
+            fontFamily:"sansBold",
             fontSize: 18,
             color: '#3F0117',
           },
@@ -124,7 +134,7 @@ export default function HomeStack() {
           headerBackVisible: false, // Oculta la flecha de retroceso
           headerTitle: "Tratamientos y Enfoque",
           headerTitleStyle: {
-            fontFamily:"MillerBlack",
+            fontFamily:"sansBold",
             fontSize: 18,
             color: '#3F0117',
           },
@@ -143,7 +153,7 @@ export default function HomeStack() {
           headerBackVisible: false, // Oculta la flecha de retroceso
           headerTitle: "Caminando Juntos: Apoyo y Superación",
           headerTitleStyle: {
-            fontFamily:"MillerBlack",
+            fontFamily:"sansBold",
             fontSize: 18,
             color: '#3F0117',
           },
@@ -161,7 +171,7 @@ export default function HomeStack() {
           headerBackVisible: false, // Oculta la flecha de retroceso
           headerTitle: "Círculo de Apoyo",
           headerTitleStyle: {
-            fontFamily:"MillerBlack",
+            fontFamily:"sansBold",
             fontSize: 18,
             color: '#3F0117',
           },
@@ -179,7 +189,7 @@ export default function HomeStack() {
           headerBackVisible: false, // Oculta la flecha de retroceso
           headerTitle: "Energía en Movimiento",
           headerTitleStyle: {
-            fontFamily:"MillerBlack",
+            fontFamily:"sansBold",
             fontSize: 18,
             color: '#3F0117',
           },
@@ -197,7 +207,7 @@ export default function HomeStack() {
           headerBackVisible: false, // Oculta la flecha de retroceso
           headerTitle: "Equilibrio Interno",
           headerTitleStyle: {
-            fontFamily:"MillerBlack",
+            fontFamily:"sansBold",
             fontSize: 18,
             color: '#3F0117',
           },

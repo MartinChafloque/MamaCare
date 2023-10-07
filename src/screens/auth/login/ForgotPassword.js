@@ -15,9 +15,8 @@ export function ForgotPassword() {
     const [email, setEmail] = useState("");
 
     const [loaded] = useFonts({
-        Miller: require('../../../../assets/fonts/MillerBannerRoman.ttf'),
-        MillerLight: require('../../../../assets/fonts/MillerBannerLight.ttf'),
-        MillerBold: require('../../../../assets/fonts/MillerBannerBold.ttf'),
+        sans: require('../../../../assets/fonts/OpenSans-Regular.ttf'),
+        sansBold: require('../../../../assets/fonts/OpenSans-Bold.ttf')
       });
     
     if (!loaded) {
@@ -45,16 +44,16 @@ export function ForgotPassword() {
                 <View style={styles.imageContainer}>
                     <Image style={styles.searchIcon} source={require("../../../../assets/img/logoSmall.png")}/>
                 </View>
-                <Text style={styles.txtTitle("Miller")}>
+                <Text style={styles.txtTitle("sans")}>
                     Mama Care
                 </Text>
-                <TextInput placeholder="Correo Electrónico" style={styles.inputEmail("MillerBold")} onChangeText={(newText) => setEmail(newText)} defaultValue={email}/>
+                <TextInput placeholder="Correo Electrónico" style={styles.inputEmail("sansBold")} onChangeText={(newText) => setEmail(newText)} defaultValue={email}/>
                 <Pressable style={styles.btnLogin} onPress={() => handleForgottenPassword()}>
-                    <Text style={styles.txtBtn("Miller")}>Restaurar contraseña</Text>
+                    <Text style={styles.txtBtn("sansBold")}>Restaurar contraseña</Text>
                 </Pressable>
-                <Text style={styles.txtAviso("Miller")}>¿No eres un miembro de Mama Care?</Text>
+                <Text style={styles.txtAviso("sans")}>¿No eres un miembro de Mama Care?</Text>
                 <Pressable style={styles.btnRegister} onPress={() => navigation.navigate(screen.auth.register)}>
-                    <Text style={styles.txtBtn("Miller")}>Registrarse</Text>
+                    <Text style={styles.txtBtn("sansBold")}>Registrarse</Text>
                 </Pressable>
             </View>
             </View>

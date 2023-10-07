@@ -15,11 +15,9 @@ export function FraseForm() {
   const navigation = useNavigation();
 
   const [loaded] = useFonts({
-      Miller: require('../../../../assets/fonts/MillerBannerRoman.ttf'),
-      MillerLight: require('../../../../assets/fonts/MillerBannerLight.ttf'),
-      MillerBold: require('../../../../assets/fonts/MillerBannerBold.ttf'),
-      MillerBlack: require('../../../../assets/fonts/MillerBannerBlack.ttf'),
-    });
+      sans: require('../../../../assets/fonts/OpenSans-Regular.ttf'),
+      sansBold: require('../../../../assets/fonts/OpenSans-Bold.ttf')
+   });
   
   
   if (!loaded) {
@@ -53,13 +51,13 @@ export function FraseForm() {
   return (
     <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
       <View style={styles.viewCreate}>
-        <Text style={styles.txtTitle("Miller")}>Agregar frase del día</Text>
+        <Text style={styles.txtTitle("sans")}>Agregar frase del día</Text>
         <TextInput multiline={true}
-          numberOfLines={2} returnKeyType='none' placeholder="Frase" style={styles.inputFrase("MillerBold")} 
+          numberOfLines={2} returnKeyType='none' placeholder="Frase" style={styles.inputFrase("sansBold")} 
           onChangeText={(newText) => setTexto(newText)} defaultValue={texto}/>
-        <TextInput placeholder="Autor" style={styles.inputAutor("MillerBold")} onChangeText={(newText) => setAutor(newText)} defaultValue={autor}/>
+        <TextInput placeholder="Autor" style={styles.inputAutor("sansBold")} onChangeText={(newText) => setAutor(newText)} defaultValue={autor}/>
         <Pressable style={styles.btnUpload} onPress={() => handleSubmit()}>
-          <Text style={styles.txtBtn("Miller")}>Agregar frase</Text>
+          <Text style={styles.txtBtn("sansBold")}>Agregar frase</Text>
         </Pressable>
       </View>
     </TouchableWithoutFeedback>

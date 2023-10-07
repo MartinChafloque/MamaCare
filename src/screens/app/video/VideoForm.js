@@ -25,10 +25,8 @@ export function VideoForm({ route }) {
   const [useStorage, result] = useStorageUpdate("videos/" + videoId + ".mp4");
 
   const [loaded] = useFonts({
-      Miller: require('../../../../assets/fonts/MillerBannerRoman.ttf'),
-      MillerLight: require('../../../../assets/fonts/MillerBannerLight.ttf'),
-      MillerBold: require('../../../../assets/fonts/MillerBannerBold.ttf'),
-      MillerBlack: require('../../../../assets/fonts/MillerBannerBlack.ttf'),
+      sans: require('../../../../assets/fonts/OpenSans-Regular.ttf'),
+      sansBold: require('../../../../assets/fonts/OpenSans-Bold.ttf')
     });
   
   useEffect(() => {
@@ -146,17 +144,17 @@ export function VideoForm({ route }) {
   return (
     <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
       <View style={styles.viewCreate}>
-        <Text style={styles.txtTitle("Miller")}>{isEdit ? "Modificar Contenido" : "Agregar Contenido"}</Text>
-        <TextInput placeholder="Título" style={styles.inputTitle("MillerBold")} onChangeText={(newText) => setTitle(newText)} defaultValue={title}/>
+        <Text style={styles.txtTitle("sans")}>{isEdit ? "Modificar Contenido" : "Agregar Contenido"}</Text>
+        <TextInput placeholder="Título" style={styles.inputTitle("sansBold")} onChangeText={(newText) => setTitle(newText)} defaultValue={title}/>
         <TextInput multiline={true}
-          numberOfLines={2} returnKeyType='none' placeholder="Descripción" style={styles.inputDesc("MillerBold")} onChangeText={(newText) => setDescription(newText)} defaultValue={description}/>
+          numberOfLines={2} returnKeyType='none' placeholder="Descripción" style={styles.inputDesc("sansBold")} onChangeText={(newText) => setDescription(newText)} defaultValue={description}/>
         {
-           !isEdit && <Pressable style={styles.btnSelect} onPress={selectFile} disabled={loading}><Text style={styles.txtBtn("Miller")}>Seleccionar video</Text></Pressable>
+           !isEdit && <Pressable style={styles.btnSelect} onPress={selectFile} disabled={loading}><Text style={styles.txtBtn("sansBold")}>Seleccionar video</Text></Pressable>
         }
         {fileSelected && <Text>Se ha seleccionado un video</Text>}
         <Pressable style={styles.btnUpload} onPress={handleSubmit} disabled={loading}>
            {
-            loading ? (<View><LoadingAnimation /></View>) : (<Text style={styles.txtBtn("Miller")}>{isEdit ? "Modificar video" : "Subir video"}</Text>)
+            loading ? (<View><LoadingAnimation /></View>) : (<Text style={styles.txtBtn("sansBold")}>{isEdit ? "Modificar video" : "Subir video"}</Text>)
           }
         </Pressable>
       </View>

@@ -15,11 +15,9 @@ export function Perfil() {
   const [data] = useDbData("/usuarios");
   
   const [loaded] = useFonts({
-    Miller: require('../../../../assets/fonts/MillerBannerRoman.ttf'),
-    MillerLight: require('../../../../assets/fonts/MillerBannerLight.ttf'),
-    MillerBold: require('../../../../assets/fonts/MillerBannerBold.ttf'),
-    MillerBlack: require('../../../../assets/fonts/MillerBannerBlack.ttf'),
-
+    sans: require('../../../../assets/fonts/OpenSans-Regular.ttf'),
+    sansBold: require('../../../../assets/fonts/OpenSans-Bold.ttf'),
+    sansLight: require('../../../../assets/fonts/OpenSans-Light.ttf')
   });
 
   if (!loaded) {
@@ -64,17 +62,17 @@ export function Perfil() {
         </View>
         <View style={styles.dataContainer}>
           <View style={styles.infoContainer}>
-            <Text style={styles.txtName("MillerBold")}>{getName()}</Text>
-            <Text style={styles.txtEmail("MillerLight")}>{getEmail()}</Text>
+            <Text style={styles.txtName("sansBold")}>{getName()}</Text>
+            <Text style={styles.txtEmail("sansLight")}>{getEmail()}</Text>
           </View>
           {
             getRol() === "admin" && (
-              <Text onPress={() => navigation.navigate(screen.perfil.frases)} style={styles.txtFrases("Miller")}>Agregar o eliminar frases</Text>
+              <Text onPress={() => navigation.navigate(screen.perfil.frases)} style={styles.txtFrases("sans")}>Agregar o eliminar frases</Text>
             )
           }
           <View>
             <Pressable style={styles.btn} onPress={() => logout()}>
-              <Text style={styles.txtBtn("Miller")}>Cerrar Sesión</Text>
+              <Text style={styles.txtBtn("sansBold")}>Cerrar Sesión</Text>
             </Pressable>
           </View>
         </View>

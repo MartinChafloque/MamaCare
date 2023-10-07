@@ -14,11 +14,7 @@ export  function Energia({ route }) {
   const [ data ] = useDbData('/contenido'); 
 
   const [loaded] = useFonts({
-    Miller: require('../../../../../assets/fonts/MillerBannerRoman.ttf'),
-    MillerLight: require('../../../../../assets/fonts/MillerBannerLight.ttf'),
-    MillerBold: require('../../../../../assets/fonts/MillerBannerBold.ttf'),
-    MillerBlack: require('../../../../../assets/fonts/MillerBannerBlack.ttf'),
-
+    sans: require('../../../../../assets/fonts/OpenSans-Regular.ttf')
   });
 
   if (!loaded) {
@@ -39,7 +35,7 @@ export  function Energia({ route }) {
       {
         datosFiltrados.length === 0 ? (
           <View style={styles.viewAviso}>
-            <Text style={styles.txtAviso("Miller")}>Aún no hay videos en la sección de 'Energía en movimiento'</Text>
+            <Text style={styles.txtAviso("sans")}>Aún no hay videos en la sección de 'Energía en movimiento'</Text>
           </View>
         ) : (
           <FlatList

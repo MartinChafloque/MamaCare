@@ -20,9 +20,8 @@ export function Register() {
   const [updateData] = updateDbData("/");
 
   const [loaded] = useFonts({
-    Miller: require('../../../../assets/fonts/MillerBannerRoman.ttf'),
-    MillerLight: require('../../../../assets/fonts/MillerBannerLight.ttf'),
-    MillerBold: require('../../../../assets/fonts/MillerBannerBold.ttf'),
+    sans: require('../../../../assets/fonts/OpenSans-Regular.ttf'),
+    sansBold: require('../../../../assets/fonts/OpenSans-Bold.ttf')
   });
 
   if (!loaded) {
@@ -68,19 +67,19 @@ export function Register() {
                 <View style={styles.imageContainer}>
                     <Image source={require("../../../../assets/img/logoSmall.png")}/>
                 </View>
-                <Text style={styles.txtTitle("Miller")}>
+                <Text style={styles.txtTitle("sans")}>
                     Mama Care
                 </Text>
-                <TextInput placeholder="Nombre Completo" style={styles.inputName("MillerBold")} onChangeText={(newText) => setName(newText)} defaultValue={name}/>
-                <TextInput placeholder="Correo Electrónico" style={styles.inputEmail("MillerBold")} onChangeText={(newText) => setEmail(newText)} defaultValue={email}/>
-                <TextInput placeholder="Contraseña" style={styles.inputPassword("MillerBold")} secureTextEntry={true} onChangeText={(newText) => setPassword(newText)} defaultValue={password}/>
-                <TextInput placeholder="Confirma tu contraseña" style={styles.inputPassword("MillerBold")} secureTextEntry={true} onChangeText={(newText) => setConfirmPassword(newText)} defaultValue={confirmPassword}/>
+                <TextInput placeholder="Nombre Completo" style={styles.inputName("sansBold")} onChangeText={(newText) => setName(newText)} defaultValue={name}/>
+                <TextInput placeholder="Correo Electrónico" style={styles.inputEmail("sansBold")} onChangeText={(newText) => setEmail(newText)} defaultValue={email}/>
+                <TextInput placeholder="Contraseña" style={styles.inputPassword("sansBold")} secureTextEntry={true} onChangeText={(newText) => setPassword(newText)} defaultValue={password}/>
+                <TextInput placeholder="Confirma tu contraseña" style={styles.inputPassword("sansBold")} secureTextEntry={true} onChangeText={(newText) => setConfirmPassword(newText)} defaultValue={confirmPassword}/>
                 <Pressable style={styles.btnRegister} onPress={() => handleRegister()}>
-                    <Text style={styles.txtBtn("Miller")}>Registrarse</Text>
+                    <Text style={styles.txtBtn("sansBold")}>Registrarse</Text>
                 </Pressable>
-                <Text style={styles.txtAviso("Miller")}>¿Ya tienes una cuenta?</Text>
+                <Text style={styles.txtAviso("sans")}>¿Ya tienes una cuenta?</Text>
                 <Pressable style={styles.btnLogin} onPress={() => navigation.navigate(screen.auth.login)}>
-                    <Text style={styles.txtBtn("Miller")}>Iniciar Sesión</Text>
+                    <Text style={styles.txtBtn("sansBold")}>Iniciar Sesión</Text>
                 </Pressable>
             </View>
             </View>

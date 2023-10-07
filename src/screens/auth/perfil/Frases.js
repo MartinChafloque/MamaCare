@@ -14,11 +14,7 @@ export function Frases() {
   const navigation = useNavigation();
 
   const [loaded] = useFonts({
-    Miller: require('../../../../assets/fonts/MillerBannerRoman.ttf'),
-    MillerLight: require('../../../../assets/fonts/MillerBannerLight.ttf'),
-    MillerBold: require('../../../../assets/fonts/MillerBannerBold.ttf'),
-    MillerBlack: require('../../../../assets/fonts/MillerBannerBlack.ttf'),
-
+    sans: require('../../../../assets/fonts/OpenSans-Regular.ttf')
   });
 
   if (!loaded) {
@@ -38,7 +34,7 @@ export function Frases() {
                     </ScrollView>
                 ) : (
                     <View>
-                        <Text style={styles.txtEmpty("Miller")}>Aún no hay frases del día</Text>
+                        <Text style={styles.txtEmpty("sans")}>Aún no hay frases del día</Text>
                     </View>
                 )
             }

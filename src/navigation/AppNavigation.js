@@ -12,7 +12,7 @@ const Tab = createBottomTabNavigator();
 export function AppNavigation(){
 
     const [loaded] = useFonts({
-        Miller: require('../../assets/fonts/MillerBannerBlack.ttf'),
+        sans: require('../../assets/fonts/OpenSans-Regular.ttf'),
       });
     
     if (!loaded) {
@@ -25,7 +25,7 @@ export function AppNavigation(){
             tabBarActiveTintColor: "#6E1B57",
             tabBarInactiveTintColor:"#6E1B57",
             tabBarLabelStyle: {
-                fontFamily: "Miller",
+                fontFamily: "sans",
                 fontSize: 12
             },
             tabBarStyle: {

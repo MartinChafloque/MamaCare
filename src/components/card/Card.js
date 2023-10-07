@@ -16,11 +16,8 @@ export  function Card( props ) {
   const [updateData] = updateDbData("/");
 
   const [loaded] = useFonts({
-    Miller: require('../../../assets/fonts/MillerBannerRoman.ttf'),
-    MillerLight: require('../../../assets/fonts/MillerBannerLight.ttf'),
-    MillerBold: require('../../../assets/fonts/MillerBannerBold.ttf'),
-    MillerBlack: require('../../../assets/fonts/MillerBannerBlack.ttf'),
-
+    sans: require('../../../assets/fonts/OpenSans-Regular.ttf'),
+    sansBold: require('../../../assets/fonts/OpenSans-Bold.ttf')
   });
 
   if (!loaded) {
@@ -48,11 +45,11 @@ export  function Card( props ) {
   return (
     <View style={[styles.card, index % 2 === 0 ? styles.cardEven : styles.cardOdd]}>
       {/* Renderiza el título del contenido */}
-      <Text style={[styles.txtTemas("MillerBlack"),styles.cardTitle]}>{contenido.titulo}</Text>
+      <Text style={[styles.txtTemas("sansBold"),styles.cardTitle]}>{contenido.titulo}</Text>
        {/* Renderiza el componente VideoPlayer y pasa la URL del video */}
       <VideoPlayer videoURL={contenido.videoURL}/>
       {/* Renderiza la descripción del contenido */}
-      <Text style={[styles.txtTemas("Miller"),styles.cardContent]}>{contenido.descripcion}</Text>
+      <Text style={[styles.txtTemas("sans"),styles.cardContent]}>{contenido.descripcion}</Text>
       {
         role === "admin" && (
           <View style={styles.viewBtn}>

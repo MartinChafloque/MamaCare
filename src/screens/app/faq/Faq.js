@@ -23,10 +23,8 @@ export function Faq() {
 
 
     const [loaded] = useFonts({
-        Miller: require('../../../../assets/fonts/MillerBannerRoman.ttf'),
-        MillerLight: require('../../../../assets/fonts/MillerBannerLight.ttf'),
-        MillerBold: require('../../../../assets/fonts/MillerBannerBold.ttf'),
-        MillerBlack: require('../../../../assets/fonts/MillerBannerBlack.ttf'),
+        sans: require('../../../../assets/fonts/OpenSans-Regular.ttf'),
+        sansBold: require('../../../../assets/fonts/OpenSans-Bold.ttf')
     });
 
     const createChat = () => {
@@ -63,26 +61,26 @@ export function Faq() {
     }
 
     return (
-        <ScrollView>
+        <ScrollView style={styles.scroll}>
             <View style={styles.content}>
-                <Text style={styles.txtTitle("MillerBold")}>
+                <Text style={styles.txtTitle("sansBold")}>
                     Preguntas Frecuentes
                 </Text>
                 <View style={styles.anuncio}>
                     <View style={styles.imgAnuncio}><Image source={require("../../../../assets/img/chatMessage.png")}></Image></View>
-                    <View style={styles.anuncioFrase}><Text style={styles.txtAnuncio("Miller")}>Recuerda, la información de este chatbot no sustituye el asesoramiento médico. Consulta a un profesional de la salud para una evaluación precisa.</Text></View>
+                    <View style={styles.anuncioFrase}><Text style={styles.txtAnuncio("sans")}>Recuerda, la información de este chatbot no sustituye el asesoramiento médico. Consulta a un profesional de la salud para una evaluación precisa.</Text></View>
                 </View>
                 <View style={styles.buscador}>
-                    <Text style={styles.txtSubTitle("MillerBold")}>
+                    <Text style={styles.txtSubTitle("sansBold")}>
                         ¿Cuál es tu pregunta?
                     </Text>
                     <View style={styles.searchContainer}>
-                        <TextInput placeholder="Realiza tu pregunta..." style={styles.inputSearch("Miller")} onChangeText={(newText) => setInput(newText)} defaultValue={input} />  
+                        <TextInput placeholder="Realiza tu pregunta..." style={styles.inputSearch("sans")} onChangeText={(newText) => setInput(newText)} defaultValue={input} />  
                         <Pressable onPress={() => createChat()}>
                             <Image source={require("../../../../assets/img/search.png")}/>
                         </Pressable>
                     </View>
-                    <Text style={styles.txtSubTitle("MillerBold")}>Historial de preguntas</Text>
+                    <Text style={styles.txtSubTitle("sansBold")}>Historial de preguntas</Text>
                     <View style={styles.preguntasContainer}>
                         {
                             preguntas && preguntas[user.uid] ? (
@@ -93,7 +91,7 @@ export function Faq() {
                                 </>
                             ) : (
                                 <View style={styles.emptyContainer}>
-                                    <Text style={styles.txtEmpty("Miller")}>Aún no has realizado preguntas</Text>
+                                    <Text style={styles.txtEmpty("sans")}>Aún no has realizado preguntas</Text>
                                 </View>
                             )
                         }

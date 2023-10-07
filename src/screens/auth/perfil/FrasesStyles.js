@@ -14,11 +14,11 @@ export const styles = StyleSheet.create({
     },
 
     lista: {
-        marginTop: 20,
+        marginTop: 30,
+        marginBottom: 5
     },
 
     frases: {
-        backgroundColor: "yellow",
         justifyContent: "center",
         alignItems: "center",
         flexDirection: "row",

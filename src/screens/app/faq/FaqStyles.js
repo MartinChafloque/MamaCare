@@ -8,8 +8,12 @@ export const styles = StyleSheet.create({
     content: {
         backgroundColor: "white",
         alignItems: "center", 
-        minHeight: windowHeight + 62, 
+        minHeight: "100%", 
         minWidth: windowWidth
+    },
+
+    scroll: {
+        backgroundColor: "white",
     },
 
     buscador: {
