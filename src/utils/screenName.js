@@ -21,6 +21,8 @@ const inicioStack = {
 
 const agendaStack = {
     tab: "AgendasTab",
+    agenda: "agenda",
+    crear: "crear"
 };
 
 const notificacionesStack = {

@@ -77,7 +77,7 @@ export function Register() {
                 <Pressable style={styles.btnRegister} onPress={() => handleRegister()}>
                     <Text style={styles.txtBtn("sansBold")}>Registrarse</Text>
                 </Pressable>
-                <Text style={styles.txtAviso("sans")}>¿Ya tienes una cuenta?</Text>
+                <Text style={styles.txtAviso("sans")}>¿Ya tiene una cuenta?</Text>
                 <Pressable style={styles.btnLogin} onPress={() => navigation.navigate(screen.auth.login)}>
                     <Text style={styles.txtBtn("sansBold")}>Iniciar Sesión</Text>
                 </Pressable>

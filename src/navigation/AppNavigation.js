@@ -1,11 +1,11 @@
 import {createBottomTabNavigator} from "@react-navigation/bottom-tabs";
 import { Image } from "react-native";
 import { useFonts } from 'expo-font';
-import { Agenda } from "../screens/app/Agenda";
 import { Notificaciones } from "../screens/app/Notificaciones";
 import { screen } from "../utils";
 import HomeStack from "./stacks/HomeStack";
 import PerfilStack from "./stacks/PerfilStack";
+import AgendaStack from "./stacks/AgendaStack";
 
 const Tab = createBottomTabNavigator();
 
@@ -37,7 +37,7 @@ export function AppNavigation(){
             tabBarIcon: ({color, size}) => tabBarOptions(route, color, size)
         })}>
             <Tab.Screen name={screen.inicio.tab} component={HomeStack} options={{title: "Inicio"}} />
-            <Tab.Screen name={screen.agenda.tab} component={Agenda} options={{title: "Agenda"}} />
+            <Tab.Screen name={screen.agenda.tab} component={AgendaStack} options={{title: "Agenda"}} />
             <Tab.Screen name={screen.notificaciones.tab} component={Notificaciones} options={{title: "Notificaciones"}}/>
             <Tab.Screen name={screen.perfil.tab} component={PerfilStack} options={{title: "Perfil"}} />
         </Tab.Navigator>

@@ -139,7 +139,7 @@ export const styles = StyleSheet.create({
         paddingLeft:4,
         paddingBottom:3,
         width:170,
-        height:166,
+        height:164,
         borderRadius:10,
         backgroundColor: "#C9F0BA",
         shadowColor: "#000",

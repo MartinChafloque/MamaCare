@@ -52,7 +52,7 @@ export function Login(){
                 <Pressable style={styles.btnLogin} onPress={() => handleLogin()}>
                     <Text style={styles.txtBtn("sansBold")}>Iniciar Sesión</Text>
                 </Pressable>
-                <Text style={styles.txtAviso("sans")}>¿No eres un miembro de Mama Care?</Text>
+                <Text style={styles.txtAviso("sans")}>¿No está registrada a Mama Care?</Text>
                 <Pressable style={styles.btnRegister} onPress={() => navigation.navigate(screen.auth.register)}>
                     <Text style={styles.txtBtn("sansBold")}>Registrarse</Text>
                 </Pressable>
