@@ -1,5 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import {Calendar, LocaleConfig} from 'react-native-calendars';
+import * as Notifications from 'expo-notifications';
+import Toast from "react-native-toast-message";
 import { styles } from './AgendaStyles';
 import { useFonts } from 'expo-font';
 import { Pressable, View, Image, Text, ScrollView } from 'react-native';
@@ -8,6 +10,7 @@ import 'moment/locale/es';
 import { useNavigation } from "@react-navigation/native";
 import { screen } from '../../../utils/screenName';
 import { useDbData } from '../../../firebase/useDbData';
+import { updateDbData } from '../../../firebase/updateDbData';
 import { useCurrentUser } from '../../../firebase/useCurrentUser';
 
 LocaleConfig.locales['es'] = {
@@ -37,7 +40,8 @@ export function Agenda() {
   const user = useCurrentUser();
   const [ recordatorios ] = useDbData("/recordatorios");
   const [ recFiltrados, setRecFiltrados ] = useState([]);
-  const [ selectedDate, setSelectedDate ] = useState("");
+  const [ selectedDate, setSelectedDate ] = useState(new Date());
+  const [ updateData ] = updateDbData("/");
   const [ fechas, setFechas ] = useState({});
   const navigation = useNavigation();
 
@@ -47,6 +51,8 @@ export function Agenda() {
   });
 
   useEffect(() => {
+    setFechas({});
+    setRecFiltrados([]);
     if(recordatorios && user) {
       const myRecs = recordatorios[user.uid];
       if(!myRecs) {
@@ -74,7 +80,9 @@ export function Agenda() {
           newFechas[val.fecha].dots.push(newDot);
         }
       })
+      const day = new Date();
       setFechas(newFechas);
+      handleSelectedDate(day.getFullYear() + "-" + (day.getMonth() + 1) + "-" + day.getDate());
     }
   }, [recordatorios, user]);
 
@@ -84,11 +92,25 @@ export function Agenda() {
   }
 
   const handleRecDetails = (day) => {
-    const newFiltros = Object.values(recordatorios[user.uid]).filter(val => val.fecha === day);
-    setRecFiltrados(newFiltros);
+    if(recordatorios && recordatorios[user.uid]) {
+      const newFiltros = Object.values(recordatorios[user.uid]).filter(val => val.fecha === day);
+      setRecFiltrados(newFiltros);
+    } else {
+      setRecFiltrados([]);
+    }
   }
 
-  if(!recordatorios || !loaded) return null;
+  const handleDeleteNotification = async (id, notificationId) => {
+    await Notifications.cancelScheduledNotificationAsync(notificationId);
+    updateData({ ["/recordatorios/" + user.uid + "/" + id]: null });
+    Toast.show({
+      type: "info",
+      position: "bottom",
+      text1: "El recordatorio se eliminó correctamente.",
+    });
+  }
+
+  if(!loaded) return null;
 
   return (
     <ScrollView style={styles.content}>
@@ -120,10 +142,11 @@ export function Agenda() {
               <View style={styles.viewCategoria}><Text style={styles.txtInfo("sans")}>{rec.categoria}</Text></View>
               <View style={styles.viewNotas}><Text style={styles.txtInfo("sans")}>{rec.notas}</Text></View>
             </View>
+            <View style={styles.viewEliminar}><Pressable onPress={() => handleDeleteNotification(rec.id, rec.notificationId)}><Image source={require("../../../../assets/img/borrar.png")}></Image></Pressable></View>
           </View>
           ))
         }
-        {recFiltrados && recFiltrados.length === 0 && <View style={styles.fechaDisplay}><Text style={styles.txtAviso("sans")}>No tienes recordatorios para este día</Text></View>}
+        {recFiltrados && recFiltrados.length === 0 && <View style={styles.fechaDisplay}><Text style={styles.txtAviso("sans")}>No tiene recordatorios para este día</Text></View>}
       </View>
     </ScrollView>
   );

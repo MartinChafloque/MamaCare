@@ -3,10 +3,13 @@ import { View, Text, TextInput, Pressable, TouchableWithoutFeedback, Keyboard } 
 import { styles } from "./VideoFormStyles"
 import * as ImagePicker from 'expo-image-picker';
 import Toast from "react-native-toast-message";
+import moment from 'moment-timezone';
+import 'moment/locale/es';
 import { TypingAnimation } from 'react-native-typing-animation';
 import uuid from 'react-native-uuid';
 import { useFonts } from 'expo-font';
 import { updateDbData } from '../../../firebase/updateDbData';
+import { useDbData } from '../../../firebase/useDbData';
 import { useStorageUpdate } from '../../../firebase/useStorageUpdate';
 import { useNavigation } from '@react-navigation/native';
 
@@ -21,7 +24,9 @@ export function VideoForm({ route }) {
   const [fileSelected, setFileSelected] = useState(false);
   const [videoId, setVideoId] = useState(uuid.v4());
   const [loading, setLoading] = useState(false);
+
   const [updateData] = updateDbData("/");
+  const [usuarios] = useDbData("/usuarios");
   const [useStorage, result] = useStorageUpdate("videos/" + videoId + ".mp4");
 
   const [loaded] = useFonts({
@@ -35,7 +40,7 @@ export function VideoForm({ route }) {
     }
   }, [result]);
   
-  if (!loaded) {
+  if (!loaded || !usuarios) {
       return null;
   }
 
@@ -49,7 +54,23 @@ export function VideoForm({ route }) {
         descripcion: description,
         ubicacion: ubicacion
       }
+
+      const newNotification = {
+        id: videoId,
+        notificationId: videoId,
+        title: `Notificación de Modúlos: Hay nuevo contenido!`,
+        tipo: "",
+        detalles: `Se ha añadido nuevo contenido en la sección ${ubicacion}. Podrás encontrarlo bajo el título: ${title}`,
+        horario: "",
+        background: "#FCD2E4",
+        timestamp: moment().tz("America/Bogota").format('LLL'),
+    }
+
       updateData({ ["/contenido/" + videoId]: newVideo });
+      Object.keys(usuarios).forEach((userId) => {
+        updateData({ ["/notificaciones/" + userId + "/" + videoId]: newNotification });
+      });
+
     } else {
       newVideo = {
         id: videoInfo.id,

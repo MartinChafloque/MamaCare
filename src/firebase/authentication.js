@@ -10,8 +10,8 @@ export const signUp = async (email, password) => {
             Toast.show({
                 type: "info",
                 position: "bottom",
-                text1: "Se ha enviado un link de verificación a tu correo.",
-                text2: "Verificalo para poder iniciar sesión.",
+                text1: "Se ha enviado un link de verificación a su correo.",
+                text2: "Verifiquelo para poder iniciar sesión.",
                 visibilityTime: 5000,
               });
         });
@@ -22,7 +22,7 @@ export const signUp = async (email, password) => {
             Toast.show({
                 type: "error",
                 position: "bottom",
-                text1: "Correo invalido.",
+                text1: "Correo inválido.",
               });
         }
 
@@ -53,7 +53,7 @@ export const signIn = async (email, password) => {
             Toast.show({
                 type: "error",
                 position: "bottom",
-                text1: "No has verificado tu correo electrónico.",
+                text1: "No ha verificado su correo electrónico.",
               });
             logout();
             return false;
@@ -64,7 +64,7 @@ export const signIn = async (email, password) => {
             Toast.show({
                 type: "error",
                 position: "bottom",
-                text1: "Correo invalido.",
+                text1: "Correo inválido.",
               });
             return false;
         }
@@ -73,7 +73,7 @@ export const signIn = async (email, password) => {
             Toast.show({
                 type: "error",
                 position: "bottom",
-                text1: "Correo electrónico o contraseña invalidas.",
+                text1: "Correo electrónico o contraseña inválidas.",
               });
             return false;
         }
@@ -92,7 +92,7 @@ export const resetPassword = async (email) =>{
         Toast.show({
             type: "info",
             position: "bottom",
-            text1: "Se ha enviado un correo para restaurar tu contraseña.",
+            text1: "Se ha enviado un correo para restaurar su contraseña.",
             visibilityTime: 5000,
           });
         return true;
@@ -101,7 +101,7 @@ export const resetPassword = async (email) =>{
             Toast.show({
                 type: "error",
                 position: "bottom",
-                text1: "Correo invalido.",
+                text1: "Correo inválido.",
               });
             return false;
         }

@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "12189577709",
+    "firebase_url": "https://mamacare-b3a03-default-rtdb.firebaseio.com",
+    "project_id": "mamacare-b3a03",
+    "storage_bucket": "mamacare-b3a03.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:12189577709:android:c7e9dd30288b6dc5e037e4",
+        "android_client_info": {
+          "package_name": "com.android.mamacare"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "12189577709-6ffq3tegcvs4ujhkdqdjrg2le0tsps1p.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD24HJYo5nXSixS2rnepr92Fdd5OfjHcdE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "12189577709-6ffq3tegcvs4ujhkdqdjrg2le0tsps1p.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -18,7 +18,9 @@
     "android": {
       "adaptiveIcon": {
         "backgroundColor": "#ffffff"
-      }
+      },
+      "package": "com.android.mamacare",
+      "googleServicesFile": "./google-services.json"
     },
     "web": {
     },
@@ -37,6 +39,16 @@
 
           "//": "Disables the microphone permission",
           "microphonePermission": false
+        }
+      ],
+      [
+        "expo-notifications",
+        {
+          "icon": "./assets/img/logoSmall.png",
+          "color": "#ffffff",
+          "sounds": [
+            "./assets/sounds/notification.wav"
+          ]
         }
       ]
     ],

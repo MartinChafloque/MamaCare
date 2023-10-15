@@ -1,7 +1,7 @@
 import {createBottomTabNavigator} from "@react-navigation/bottom-tabs";
 import { Image } from "react-native";
 import { useFonts } from 'expo-font';
-import { Notificaciones } from "../screens/app/Notificaciones";
+import { Notificaciones } from "../screens/app/notificaciones/Notificaciones";
 import { screen } from "../utils";
 import HomeStack from "./stacks/HomeStack";
 import PerfilStack from "./stacks/PerfilStack";

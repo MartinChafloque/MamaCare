@@ -91,7 +91,7 @@ export function Faq() {
                                 </>
                             ) : (
                                 <View style={styles.emptyContainer}>
-                                    <Text style={styles.txtEmpty("sans")}>Aún no has realizado preguntas</Text>
+                                    <Text style={styles.txtEmpty("sans")}>Aún no ha realizado preguntas</Text>
                                 </View>
                             )
                         }

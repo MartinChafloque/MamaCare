@@ -16,11 +16,6 @@ export const styles = StyleSheet.create({
         marginBottom: 20
     },
 
-    scroll: {
-        backgroundColor: "white",
-        padding: 10
-    },
-
     fechaDisplay: {
         marginTop: 20,
         marginLeft: 10
@@ -47,8 +42,15 @@ export const styles = StyleSheet.create({
     viewInfo:{
         justifyContent: "center",
         alignItems: "center",
-        width: "80%",
+        width: "70%",
         padding: 10
+    },
+
+    viewEliminar: {
+        alignItems: "center",
+        width: "10%",
+        marginTop: -7,
+        marginLeft: 7
     },
 
     txtFecha: font => ({

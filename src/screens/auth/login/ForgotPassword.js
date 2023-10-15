@@ -51,7 +51,7 @@ export function ForgotPassword() {
                 <Pressable style={styles.btnLogin} onPress={() => handleForgottenPassword()}>
                     <Text style={styles.txtBtn("sansBold")}>Restaurar contraseña</Text>
                 </Pressable>
-                <Text style={styles.txtAviso("sans")}>¿No eres un miembro de Mama Care?</Text>
+                <Text style={styles.txtAviso("sans")}>¿No está registrada a Mama Care?</Text>
                 <Pressable style={styles.btnRegister} onPress={() => navigation.navigate(screen.auth.register)}>
                     <Text style={styles.txtBtn("sansBold")}>Registrarse</Text>
                 </Pressable>

@@ -1,6 +1,9 @@
 import React, { useEffect, useState } from 'react'
 import { View, Text, Image, TextInput, Pressable, TouchableWithoutFeedback, Keyboard } from 'react-native'
 import { useNavigation } from '@react-navigation/native';
+import * as Device from 'expo-device';
+import * as Notifications from 'expo-notifications';
+import Constants from "expo-constants";
 import { useFonts } from 'expo-font';
 import Toast from "react-native-toast-message";
 import DropDownPicker from 'react-native-dropdown-picker';
@@ -9,6 +12,14 @@ import { styles } from './AgendaFormStyles'
 import { yearsPicker, monthsPicker, hoursPicker, minutesPicker, getTodaysDate } from '../../../utils/datetime';
 import { updateDbData } from '../../../firebase/updateDbData';
 import { useCurrentUser } from '../../../firebase/useCurrentUser';
+
+Notifications.setNotificationHandler({
+    handleNotification: async () => ({
+      shouldShowAlert: true,
+      shouldPlaySound: false,
+      shouldSetBadge: false,
+    }),
+  });
 
 export function AgendaForm() {
 
@@ -45,9 +56,72 @@ export function AgendaForm() {
     const [ updateData ] = updateDbData("/");
     const navigation = useNavigation();
 
+    const [expoPushToken, setExpoPushToken] = useState('');
+
     useEffect(() => {
         getDaysItems(new Date().getMonth() + 1);
-    }, [])
+        registerForPushNotificationsAsync().then(token => setExpoPushToken(token));
+    }, []);
+
+    async function schedulePushNotification(id) {
+
+        const trigger = new Date();
+        trigger.setFullYear(valAnios, valMeses - 1, valDias);
+        trigger.setHours(valHoras - 1);
+        trigger.setMinutes(valMinutos);
+        trigger.setSeconds(0);
+        
+        const identifier = await Notifications.scheduleNotificationAsync({
+            content: {
+            title: "MamaCare",
+            body: titulo,
+            data: {
+                id: id,
+                titulo: titulo,
+                notas: notas,
+                categoria: valCategoria,
+                fecha: valAnios + "-" + valMeses + "-" + valDias,
+                hora: valHoras + ":" + valMinutos,
+            },
+            sound: "notification.wav"
+            },
+            trigger: trigger,
+        });
+
+        return identifier;
+    }
+      
+    async function registerForPushNotificationsAsync() {
+        let token;
+        
+        if (Platform.OS === 'android') {
+            await Notifications.setNotificationChannelAsync('default', {
+            name: 'default',
+            importance: Notifications.AndroidImportance.MAX,
+            vibrationPattern: [0, 250, 250, 250],
+            lightColor: '#FF231F7C',
+            });
+        }
+        
+        if (Device.isDevice) {
+            const { status: existingStatus } = await Notifications.getPermissionsAsync();
+            let finalStatus = existingStatus;
+            if (existingStatus !== 'granted') {
+            const { status } = await Notifications.requestPermissionsAsync();
+            finalStatus = status;
+            }
+            if (finalStatus !== 'granted') {
+            alert('Failed to get push token for push notification!');
+            return;
+            }
+            token = (await Notifications.getExpoPushTokenAsync({ projectId: Constants.expoConfig.extra.eas.projectId })).data;
+            console.log(token);
+        } else {
+            alert('Must use physical device for Push Notifications');
+        }
+        
+        return token;
+    }
 
     const [loaded] = useFonts({
         sans: require('../../../../assets/fonts/OpenSans-Regular.ttf'),
@@ -61,7 +135,7 @@ export function AgendaForm() {
         setDias(daysPicker);
     } 
 
-    const handleSubmit = () => {
+    const handleSubmit = async () => {
 
         if(!validateForm()) {
             Toast.show({
@@ -82,19 +156,43 @@ export function AgendaForm() {
               });
             return;
         }
-
         const id = uuid.v4();
+        const identifier = await schedulePushNotification(id);
         const newRecordatorio = {
             id: id,
             titulo: titulo,
             notas: notas,
             categoria: valCategoria,
             fecha: valAnios + "-" + valMeses + "-" + valDias,
-            hora: valHoras + ":" + valMinutos
+            hora: valHoras + ":" + valMinutos,
+            notificationId: identifier
+        }
+        
+        const response = await fetch("https://us-central1-mamacare-b3a03.cloudfunctions.net/scheduleNotification", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({ data: newRecordatorio, userId: user.uid })
+        })
+
+        if(response.status === 200) {
+            updateData({ ["/recordatorios/" + user.uid + "/" + id]: newRecordatorio });
+            Toast.show({
+                type: "info",
+                position: "bottom",
+                text1: "El recordatorio se creo con éxito.",
+              });
+            navigation.goBack();
+        } else {
+            Toast.show({
+                type: "error",
+                position: "bottom",
+                text1: "Error creando el recordatorio. Intente nuevamente.",
+            });
+            navigation.goBack();
         }
 
-        updateData({ ["/recordatorios/" + user.uid + "/" + id]: newRecordatorio });
-        navigation.goBack();
     }
 
     const validateForm = () => {
