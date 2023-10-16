@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { View, Text, Pressable, Image } from 'react-native'
 import { useNavigation } from '@react-navigation/native'
 import { useFonts } from "expo-font"
@@ -8,12 +8,25 @@ import { screen } from '../../utils/screenName'
 import {VideoPlayer} from "../VideoPlayer"
 import { updateDbData } from '../../firebase/updateDbData'
 import { deleteStorage } from '../../firebase/deleteStorage'
+import { getImage } from '../../firebase/getStorageContent';
 
 export  function Card( props ) {
 
   const { contenido, index, role } = props;
+  const [imageURL, setImageURL] = useState("");
   const navigation = useNavigation();
   const [updateData] = updateDbData("/");
+
+  useEffect(() => {
+    const getImageURL = async() => {
+      if(contenido.tipo === "photo" && !imageURL) {
+        const url = await getImage("photos/" + contenido.id + ".jpg");
+        setImageURL(url);
+      }
+    }
+
+    getImageURL();
+  }, [imageURL])
 
   const [loaded] = useFonts({
     sans: require('../../../assets/fonts/OpenSans-Regular.ttf'),
@@ -25,35 +38,43 @@ export  function Card( props ) {
   }
 
   const handleDelete = async () => {
-    const result = await deleteStorage("/videos/" + contenido.id + ".mp4");
-    if(result) {
+    let result = null;
+    if(contenido.tipo === "video") {
+      result = await deleteStorage("/videos/" + contenido.id + ".mp4");
+    } else if(contenido.tipo === "photo") {
+      result = await deleteStorage("/photos/" + contenido.id + ".jpg");
+    }
+
+    if(result || contenido.tipo === "texto") {
       updateData({ ["/contenido/" + contenido.id]: null });
       Toast.show({
         type: "info",
         position: "bottom",
-        text1: "El video se eliminó correctamente.",
+        text1: "El contenido se eliminó correctamente.",
       });
     } else {
       Toast.show({
         type: "error",
         position: "bottom",
-        text1: "Error eliminando el video.",
+        text1: "Error eliminando el contenido.",
       });
     }
   }
 
   return (
     <View style={[styles.card, index % 2 === 0 ? styles.cardEven : styles.cardOdd]}>
-      {/* Renderiza el título del contenido */}
       <Text style={[styles.txtTemas("sansBold"),styles.cardTitle]}>{contenido.titulo}</Text>
-       {/* Renderiza el componente VideoPlayer y pasa la URL del video */}
-      <VideoPlayer videoURL={contenido.videoURL}/>
-      {/* Renderiza la descripción del contenido */}
+      { contenido.tipo === "video" && <VideoPlayer videoURL={contenido.contenidoURL}/>}
+      { contenido.tipo === "photo" && imageURL && (
+        <View style={styles.imageView}>
+          <Image style={styles.image} source={{ uri: imageURL }}/>
+        </View>
+      )}
       <Text style={[styles.txtTemas("sans"),styles.cardContent]}>{contenido.descripcion}</Text>
       {
         role === "admin" && (
           <View style={styles.viewBtn}>
-            <Pressable style={styles.btnModificar} onPress={() => navigation.navigate(screen.inicio.video, { isEdit: true, videoInfo: contenido, ubicacion: contenido.ubicacion })}>
+            <Pressable style={styles.btnModificar} onPress={() => navigation.navigate(screen.inicio.video, { isEdit: true, contenidoInfo: contenido, ubicacion: contenido.ubicacion })}>
               <Image source={require("../../../assets/img/edit.png")}/>
             </Pressable>
             <Pressable style={styles.btnEliminar} onPress={handleDelete}>

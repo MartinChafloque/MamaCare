@@ -12,6 +12,7 @@ import { styles } from './AgendaFormStyles'
 import { yearsPicker, monthsPicker, hoursPicker, minutesPicker, getTodaysDate } from '../../../utils/datetime';
 import { updateDbData } from '../../../firebase/updateDbData';
 import { useCurrentUser } from '../../../firebase/useCurrentUser';
+import { schedule } from '../../../utils/scheduleNotification';
 
 Notifications.setNotificationHandler({
     handleNotification: async () => ({
@@ -168,7 +169,7 @@ export function AgendaForm() {
             notificationId: identifier
         }
         
-        const response = await fetch("https://us-central1-mamacare-b3a03.cloudfunctions.net/scheduleNotification", {
+        const response = await fetch("https://mamacare-scheduler-03c02ff7bd73.herokuapp.com/", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
@@ -176,7 +177,8 @@ export function AgendaForm() {
             body: JSON.stringify({ data: newRecordatorio, userId: user.uid })
         })
 
-        if(response.status === 200) {
+        //const response = await schedule(newRecordatorio, user.uid);
+        if(response.status === 201) {
             updateData({ ["/recordatorios/" + user.uid + "/" + id]: newRecordatorio });
             Toast.show({
                 type: "info",
@@ -196,7 +198,7 @@ export function AgendaForm() {
     }
 
     const validateForm = () => {
-        return titulo && notas && valCategoria && valAnios && valMeses && valDias && valHoras && valMinutos;
+        return titulo && valCategoria && valAnios && valMeses && valDias && valHoras && valMinutos;
     }
     
     if (!loaded) {
@@ -331,7 +333,7 @@ export function AgendaForm() {
                     multiline={true}
                     numberOfLines={2} 
                     returnKeyType='none' 
-                    placeholder="Notas Adicionales" 
+                    placeholder="Notas Adicionales (Opcional)" 
                     style={styles.inputNot("sansBold")}
                     onChangeText={(newText) => setNotas(newText)}/>
             </View>

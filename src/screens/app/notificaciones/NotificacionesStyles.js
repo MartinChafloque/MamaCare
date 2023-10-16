@@ -8,7 +8,7 @@ export const styles = StyleSheet.create({
         backgroundColor: "white",
         minHeight: "100%",
         minWidth: windowWidth,
-        paddingTop: 20,
+        paddingTop: 40,
         position: "relative"
     },
 

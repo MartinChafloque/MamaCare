@@ -55,5 +55,17 @@ export const styles = StyleSheet.create({
       minWidth: 33,
       minHeight: 31,
       borderRadius: 50,
+    },
+
+    imageView: {
+      minWidth: "100%",
+      minHeight: 200,
+      justifyContent: "center",
+      alignItems: "center"
+    },
+
+    image: {
+      minWidth: 250,
+      minHeight: 200
     }
 });

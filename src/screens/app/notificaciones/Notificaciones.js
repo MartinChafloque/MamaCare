@@ -1,6 +1,8 @@
 import { View, Text, ScrollView, Image, Pressable } from 'react-native'
 import React from 'react'
 import Toast from "react-native-toast-message";
+import moment from 'moment-timezone';
+import 'moment/locale/es';
 import { styles } from "./NotificacionesStyles"
 import { useFonts } from 'expo-font';
 import { useDbData } from '../../../firebase/useDbData'
@@ -32,7 +34,9 @@ export function Notificaciones() {
   return (
     <View style={styles.content}>
       <ScrollView>
-        { (notificaciones && notificaciones[user.uid] && Object.entries(notificaciones[user.uid]).length > 0) ? Object.entries(notificaciones[user.uid]).map(([key, val]) => (
+        {(notificaciones && notificaciones[user.uid] && Object.entries(notificaciones[user.uid]).length > 0) ? Object.entries(notificaciones[user.uid])
+                                                              .sort((a, b) => moment(a[1].timestamp, "LLL").toISOString() > moment(b[1].timestamp, "LLL").toISOString() ? -1 : 1)
+                                                              .map(([key, val]) => (
           <View style={styles.viewGrande} key={key}>
             <View style={styles.viewBackground(val.background)}></View>
             <View style={styles.viewInfo}>

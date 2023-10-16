@@ -15,19 +15,21 @@ import { useNavigation } from '@react-navigation/native';
 
 export function VideoForm({ route }) {
 
-  const { isEdit, videoInfo, ubicacion } = route.params;
+  const { isEdit, contenidoInfo, ubicacion } = route.params;
   const navigation = useNavigation();
 
-  const [title, setTitle] = useState(videoInfo?.titulo || "");
-  const [description, setDescription] = useState(videoInfo?.descripcion || "");
-  const [videoFile, setVideoFile] = useState(null);
+  const [title, setTitle] = useState(contenidoInfo?.titulo || "");
+  const [description, setDescription] = useState(contenidoInfo?.descripcion || "");
+  const [tipo, setTipo] = useState("texto");
+  const [contenidoFile, setContenidoFile] = useState(null);
   const [fileSelected, setFileSelected] = useState(false);
-  const [videoId, setVideoId] = useState(uuid.v4());
+  const [contenidoId, setContenidoId] = useState(uuid.v4());
   const [loading, setLoading] = useState(false);
 
   const [updateData] = updateDbData("/");
   const [usuarios] = useDbData("/usuarios");
-  const [useStorage, result] = useStorageUpdate("videos/" + videoId + ".mp4");
+  const [useVideoStorage, videoResult] = useStorageUpdate("videos/" + contenidoId + ".mp4");
+  const [usePhotoStorage, photoResult] = useStorageUpdate("photos/" + contenidoId + ".jpg");
 
   const [loaded] = useFonts({
       sans: require('../../../../assets/fonts/OpenSans-Regular.ttf'),
@@ -35,51 +37,60 @@ export function VideoForm({ route }) {
     });
   
   useEffect(() => {
-    if (result) {
+    if (videoResult || photoResult) {
       handleDatabase();
     }
-  }, [result]);
+  }, [videoResult, photoResult]);
   
   if (!loaded || !usuarios) {
       return null;
   }
 
   const handleDatabase = async () => {
-    let newVideo = null;
+    let newContenido = null;
     if(!isEdit) {
-      newVideo = {
-        id: videoId,
-        videoURL: result,
+      newContenido = {
+        id: contenidoId,
         titulo: title,
         descripcion: description,
-        ubicacion: ubicacion
+        ubicacion: ubicacion,
+        tipo: tipo
+      }
+
+      if(tipo === "video") {
+        newContenido.contenidoURL = videoResult;
+      } else if(tipo === "photo") {
+        newContenido.contenidoURL = photoResult;
+      } else {
+        newContenido.contenidoURL = "";
       }
 
       const newNotification = {
-        id: videoId,
-        notificationId: videoId,
+        id: contenidoId,
+        notificationId: contenidoId,
         title: `Notificación de Modúlos: Hay nuevo contenido!`,
         tipo: "",
         detalles: `Se ha añadido nuevo contenido en la sección ${ubicacion}. Podrás encontrarlo bajo el título: ${title}`,
         horario: "",
         background: "#FCD2E4",
         timestamp: moment().tz("America/Bogota").format('LLL'),
-    }
+      }
 
-      updateData({ ["/contenido/" + videoId]: newVideo });
+      updateData({ ["/contenido/" + contenidoId]: newContenido });
       Object.keys(usuarios).forEach((userId) => {
-        updateData({ ["/notificaciones/" + userId + "/" + videoId]: newNotification });
+        updateData({ ["/notificaciones/" + userId + "/" + contenidoId]: newNotification });
       });
 
     } else {
-      newVideo = {
-        id: videoInfo.id,
-        videoURL: videoInfo.videoURL,
+      newContenido = {
+        id: contenidoInfo.id,
+        contenidoURL: contenidoInfo.contenidoURL,
         titulo: title,
         descripcion: description,
-        ubicacion: videoInfo.ubicacion
+        ubicacion: contenidoInfo.ubicacion,
+        tipo: contenidoInfo.tipo
       }
-      updateData({ ["/contenido/" + videoInfo.id]: newVideo });
+      updateData({ ["/contenido/" + contenidoInfo.id]: newContenido });
     }
     setLoading(false);
     navigation.goBack();
@@ -94,7 +105,7 @@ export function VideoForm({ route }) {
   }
 
   const uploadFile = async () => {
-    if(!videoFile || !title || !description) {
+    if(!title || !description) {
       Toast.show({
         type: "error",
         position: "bottom",
@@ -105,8 +116,15 @@ export function VideoForm({ route }) {
 
     try {
       setLoading(true);
-      const blob = await uriToBlob(videoFile.replace("file:///", "file:/"));
-      useStorage(blob);
+      if(tipo === "video") {
+        const blob = await uriToBlob(contenidoFile.replace("file:///", "file:/"));
+        useVideoStorage(blob);
+      } else if(tipo === "photo") {
+        const blob = await uriToBlob(contenidoFile.replace("file:///", "file:/"));
+        usePhotoStorage(blob);
+      } else {
+        handleDatabase();
+      }
     }catch(e) {
       Toast.show({
         type: "error",
@@ -119,12 +137,14 @@ export function VideoForm({ route }) {
   const selectFile = async () => {
     try {
       const result = await ImagePicker.launchImageLibraryAsync({
-        mediaTypes: ImagePicker.MediaTypeOptions.Videos,
+        mediaTypes: ImagePicker.MediaTypeOptions.All,
         allowsEditing: true
       });
       if(!result.canceled) {
         setFileSelected(true);
-        setVideoFile(result.assets[0].uri)
+        setContenidoFile(result.assets[0].uri);
+        if(result.assets[0].type === "image") setTipo("photo");
+        if(result.assets[0].type === "video") setTipo("video");
       }
     } catch (err) {
       Toast.show({
@@ -170,12 +190,12 @@ export function VideoForm({ route }) {
         <TextInput multiline={true}
           numberOfLines={2} returnKeyType='none' placeholder="Descripción" style={styles.inputDesc("sansBold")} onChangeText={(newText) => setDescription(newText)} defaultValue={description}/>
         {
-           !isEdit && <Pressable style={styles.btnSelect} onPress={selectFile} disabled={loading}><Text style={styles.txtBtn("sansBold")}>Seleccionar video</Text></Pressable>
+           !isEdit && <Pressable style={styles.btnSelect} onPress={selectFile} disabled={loading}><Text style={styles.txtBtn("sansBold")}>Seleccionar contenido (Opcional)</Text></Pressable>
         }
-        {fileSelected && <Text>Se ha seleccionado un video</Text>}
+        {fileSelected && <Text>Se ha seleccionado un archivo</Text>}
         <Pressable style={styles.btnUpload} onPress={handleSubmit} disabled={loading}>
            {
-            loading ? (<View><LoadingAnimation /></View>) : (<Text style={styles.txtBtn("sansBold")}>{isEdit ? "Modificar video" : "Subir video"}</Text>)
+            loading ? (<View><LoadingAnimation /></View>) : (<Text style={styles.txtBtn("sansBold")}>{isEdit ? "Modificar contenido" : "Subir contenido"}</Text>)
           }
         </Pressable>
       </View>

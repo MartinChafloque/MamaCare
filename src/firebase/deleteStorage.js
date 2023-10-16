@@ -2,9 +2,9 @@ import { ref, deleteObject } from "firebase/storage";
 import { storage } from "./firebase";
 
 export const deleteStorage = async (path) => {
-    const videoRef = ref(storage, path);
+    const contenidoRef = ref(storage, path);
     try {
-        deleteObject(videoRef)
+        deleteObject(contenidoRef)
         return true;
     } catch(err) {
         return false;
