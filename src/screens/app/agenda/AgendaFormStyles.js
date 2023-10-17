@@ -28,7 +28,7 @@ export const styles = StyleSheet.create({
     },
 
     viewSecciones: {
-        marginTop: 20,
+        marginTop: 10,
         flexDirection: "row",
         minWidth: "100%",
         alignItems: "center",
@@ -37,7 +37,7 @@ export const styles = StyleSheet.create({
 
     viewFechaGrande: {
         marginLeft: 5,
-        marginTop: 20,
+        marginTop: 10,
         alignItems: "center",
         flexDirection: "row",
         minWidth: "100%",
@@ -60,6 +60,14 @@ export const styles = StyleSheet.create({
         minHeight: 24
     },
 
+    dropDownAlarma: {
+        borderRadius: 20,
+        borderColor: "white",
+        marginLeft: 20,
+        width: 230,
+        minHeight: 24
+    },
+
     dropFecha: {
         marginTop: 8,
         borderRadius: 20,
@@ -70,7 +78,8 @@ export const styles = StyleSheet.create({
 
     btnSubmit:{
         backgroundColor: "white",
-        marginTop: 20,
+        marginTop: 10,
+        marginBottom: 10,
         width: 100,
         justifyContent: "center",
         alignItems: "center",
