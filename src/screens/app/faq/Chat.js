@@ -2,7 +2,7 @@ import React, {useEffect, useState} from 'react';
 import { ScrollView, TextInput, TouchableHighlight, View , Text, Pressable, Image } from 'react-native';
 import axios from "axios";
 import { useFonts } from 'expo-font';
-import { API_KEY } from '@env'
+import { OPENAI_API_KEY } from '@env'
 import { TypingAnimation } from 'react-native-typing-animation';
 import { useDbData } from "../../../firebase/useDbData";
 import { updateDbData } from "../../../firebase/updateDbData";
@@ -41,7 +41,7 @@ export function Chat({ route }) {
         {
             headers: {
                 "Content-Type": "application/json",
-                "Authorization": "Bearer " + API_KEY
+                "Authorization": "Bearer " + OPENAI_API_KEY
             }
         })
         const botMessage = { role: "assistant", content: response.data.choices[0].message.content };

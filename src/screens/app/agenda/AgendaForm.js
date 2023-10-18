@@ -13,7 +13,8 @@ import { styles } from './AgendaFormStyles'
 import { yearsPicker, monthsPicker, hoursPicker, minutesPicker, getTodaysDate } from '../../../utils/datetime';
 import { updateDbData } from '../../../firebase/updateDbData';
 import { useCurrentUser } from '../../../firebase/useCurrentUser';
-import { schedule } from '../../../utils/scheduleNotification';
+import { SCHEDULER_API_URL } from '@env'
+
 
 Notifications.setNotificationHandler({
     handleNotification: async () => ({
@@ -199,7 +200,7 @@ export function AgendaForm() {
             alarma: valAlarma
         }
         
-        const response = await fetch("https://mamacare-scheduler-03c02ff7bd73.herokuapp.com/", {
+        const response = await fetch(SCHEDULER_API_URL, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
