@@ -35,7 +35,7 @@ export  function Energia({ route }) {
       {
         datosFiltrados.length === 0 ? (
           <View style={styles.viewAviso}>
-            <Text style={styles.txtAviso("sans")}>Aún no hay videos en la sección de 'Energía en movimiento'</Text>
+            <Text style={styles.txtAviso("sans")}>Aún no hay contenido en la sección de 'Energía en movimiento'</Text>
           </View>
         ) : (
           <FlatList

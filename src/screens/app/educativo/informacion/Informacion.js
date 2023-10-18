@@ -34,7 +34,7 @@ export  function Informacion({ route }) {
       {
         datosFiltrados.length === 0 ? (
           <View style={styles.viewAviso}>
-            <Text style={styles.txtAviso("sans")}>Aún no hay videos en la sección de 'Información general'</Text>
+            <Text style={styles.txtAviso("sans")}>Aún no hay contenido en la sección de 'Información general'</Text>
           </View>
         ) : (
           <FlatList

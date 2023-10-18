@@ -34,7 +34,7 @@ export  function Circulo({ route }) {
       {
         datosFiltrados.length === 0 ? (
           <View style={styles.viewAviso}>
-            <Text style={styles.txtAviso("sans")}>Aún no hay videos en la sección de 'Círculo de apoyo'</Text>
+            <Text style={styles.txtAviso("sans")}>Aún no hay contenido en la sección de 'Círculo de apoyo'</Text>
           </View>
         ) : (
           <FlatList
