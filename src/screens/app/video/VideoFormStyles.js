@@ -5,6 +5,10 @@ const windowHeight = Dimensions.get('window').height;
 
 export const styles = StyleSheet.create({
 
+    scroll: {
+        backgroundColor: "white"
+    },
+
     viewCreate: {
         backgroundColor: "white",
         alignItems: "center",

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { View, Text, TextInput, Pressable, TouchableWithoutFeedback, Keyboard } from 'react-native'
+import { View, Text, TextInput, Pressable, TouchableWithoutFeedback, Keyboard, ScrollView } from 'react-native'
 import { styles } from "./VideoFormStyles"
 import * as ImagePicker from 'expo-image-picker';
 import Toast from "react-native-toast-message";
@@ -183,22 +183,24 @@ export function VideoForm({ route }) {
   }
 
   return (
-    <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
-      <View style={styles.viewCreate}>
-        <Text style={styles.txtTitle("sans")}>{isEdit ? "Modificar Contenido" : "Agregar Contenido"}</Text>
-        <TextInput placeholder="Título" style={styles.inputTitle("sansBold")} onChangeText={(newText) => setTitle(newText)} defaultValue={title}/>
-        <TextInput multiline={true}
-          numberOfLines={2} returnKeyType='none' placeholder="Descripción" style={styles.inputDesc("sansBold")} onChangeText={(newText) => setDescription(newText)} defaultValue={description}/>
-        {
-           !isEdit && <Pressable style={styles.btnSelect} onPress={selectFile} disabled={loading}><Text style={styles.txtBtn("sansBold")}>Seleccionar contenido (Opcional)</Text></Pressable>
-        }
-        {fileSelected && <Text>Se ha seleccionado un archivo</Text>}
-        <Pressable style={styles.btnUpload} onPress={handleSubmit} disabled={loading}>
-           {
-            loading ? (<View><LoadingAnimation /></View>) : (<Text style={styles.txtBtn("sansBold")}>{isEdit ? "Modificar contenido" : "Subir contenido"}</Text>)
+    <ScrollView style={styles.scroll}>
+      <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
+        <View style={styles.viewCreate}>
+          <Text style={styles.txtTitle("sans")}>{isEdit ? "Modificar Contenido" : "Agregar Contenido"}</Text>
+          <TextInput placeholder="Título" style={styles.inputTitle("sansBold")} onChangeText={(newText) => setTitle(newText)} defaultValue={title}/>
+          <TextInput multiline={true}
+            numberOfLines={2} returnKeyType='none' placeholder="Descripción" style={styles.inputDesc("sansBold")} onChangeText={(newText) => setDescription(newText)} defaultValue={description}/>
+          {
+            !isEdit && <Pressable style={styles.btnSelect} onPress={selectFile} disabled={loading}><Text style={styles.txtBtn("sansBold")}>Seleccionar contenido (Opcional)</Text></Pressable>
           }
-        </Pressable>
-      </View>
-    </TouchableWithoutFeedback>
+          {fileSelected && <Text>Se ha seleccionado un archivo</Text>}
+          <Pressable style={styles.btnUpload} onPress={handleSubmit} disabled={loading}>
+            {
+              loading ? (<View><LoadingAnimation /></View>) : (<Text style={styles.txtBtn("sansBold")}>{isEdit ? "Modificar contenido" : "Subir contenido"}</Text>)
+            }
+          </Pressable>
+        </View>
+      </TouchableWithoutFeedback>
+    </ScrollView>
   )
 }
