@@ -183,7 +183,7 @@ export function VideoForm({ route }) {
   }
 
   return (
-    <ScrollView style={styles.scroll}>
+    <ScrollView style={styles.scroll} contentContainerStyle={{flexGrow: 1}}>
       <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
         <View style={styles.viewCreate}>
           <Text style={styles.txtTitle("sans")}>{isEdit ? "Modificar Contenido" : "Agregar Contenido"}</Text>
