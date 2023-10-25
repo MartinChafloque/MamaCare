@@ -49,7 +49,7 @@ export function Home() {
             </Pressable>  
           </View>
           <View style={styles.rightContainer}> 
-            <Pressable style={styles.gameView}>
+            <Pressable style={styles.gameView} onPress={() => navigation.navigate(screen.inicio.animacion)}>
               <View style={styles.imageGame}>
                 <Image source={require("../../../../assets/img/homeGame.png")}/>
               </View>

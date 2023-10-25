@@ -6,6 +6,7 @@ import { screen } from "../utils";
 import HomeStack from "./stacks/HomeStack";
 import PerfilStack from "./stacks/PerfilStack";
 import AgendaStack from "./stacks/AgendaStack";
+import { getFocusedRouteNameFromRoute } from "@react-navigation/native"
 
 const Tab = createBottomTabNavigator();
 
@@ -32,11 +33,21 @@ export function AppNavigation(){
                 borderTopLeftRadius: 20,
                 borderTopRightRadius: 20,
                 borderColor: "lightgrey",
-                borderWidth: 1.5,            
+                borderWidth: 1.5,          
             },
             tabBarIcon: ({color, size}) => tabBarOptions(route, color, size)
         })}>
-            <Tab.Screen name={screen.inicio.tab} component={HomeStack} options={{title: "Inicio"}} />
+            <Tab.Screen name={screen.inicio.tab} component={HomeStack} options={({route}) => ({
+                title: "Inicio",
+                tabBarStyle: ((route) => {
+                    const routeName = getFocusedRouteNameFromRoute(route) ?? ""
+                    if (routeName === screen.inicio.animacion){
+                        
+                        return { display: "none" }
+                    }
+                    return
+                })(route),
+            })} />
             <Tab.Screen name={screen.agenda.tab} component={AgendaStack} options={{title: "Agenda"}} />
             <Tab.Screen name={screen.notificaciones.tab} component={Notificaciones} options={{title: "Notificaciones"}}/>
             <Tab.Screen name={screen.perfil.tab} component={PerfilStack} options={{title: "Perfil"}} />

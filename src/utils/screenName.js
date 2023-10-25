@@ -4,6 +4,7 @@ const inicioStack = {
     educativo: "educativo",
     bienestar: "bienestar",
     faq: "faq",
+    animacion: "animacion",
     chat: "chat",
     video: "video",
     //educativo

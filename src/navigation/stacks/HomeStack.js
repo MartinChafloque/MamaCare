@@ -16,6 +16,7 @@ import { Equilibrio } from "../../screens/app/bienestar/equilibrio/Equilibrio";
 import { Recuperacion } from "../../screens/app/educativo/recuperacion/Recuperacion";
 import { Sintomas } from "../../screens/app/educativo/sintomas/Sintomas";
 import { Nutricion } from "../../screens/app/educativo/nutricion/Nutricion";
+import { Animacion } from "../../screens/app/animacion/Animacion";
 
 const Stack = createNativeStackNavigator();
 
@@ -45,9 +46,13 @@ export default function HomeStack() {
         name={screen.inicio.bienestar}
         component={Bienestar}
       />
-       <Stack.Screen
+      <Stack.Screen
         name={screen.inicio.faq}
         component={Faq}
+      />
+      <Stack.Screen
+        name={screen.inicio.animacion}
+        component={Animacion}
       />
       <Stack.Screen
         name={screen.inicio.chat}

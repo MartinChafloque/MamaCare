@@ -64,7 +64,7 @@ export  function Card( props ) {
   return (
     <View style={[styles.card, index % 2 === 0 ? styles.cardEven : styles.cardOdd]}>
       <Text style={[styles.txtTemas("sansBold"),styles.cardTitle]}>{contenido.titulo}</Text>
-      { contenido.tipo === "video" && <VideoPlayer videoURL={contenido.contenidoURL}/>}
+      { contenido.tipo === "video" && <VideoPlayer videoURL={contenido.contenidoURL} path="contenido" mode="contain"/>}
       { contenido.tipo === "photo" && imageURL && (
         <View style={styles.imageView}>
           <Image style={styles.image} source={{ uri: imageURL }}/>
