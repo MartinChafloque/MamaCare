@@ -31,8 +31,9 @@ export function Landing(){
                 <Pressable style={styles.btn} onPress={() => navigation.navigate(screen.auth.register)}>
                     <Text style={styles.txtBtn("sansBold")}>Registrarse</Text>
                 </Pressable>
-                <View>
-                    <Image source={require("../../../../assets/img/logo_universidad.png")} style={styles.logoU}/>
+                <View style={styles.viewLogo}>
+                    <View style={styles.logoU}><Image source={require("../../../../assets/img/logo_universidad.png")}/></View>
+                    <View style={styles.logoHospital}><Image source={require("../../../../assets/img/logo_hospital.png")}/></View>
                 </View>
             </View>
         </React.StrictMode>

@@ -43,7 +43,18 @@ export const styles = StyleSheet.create({
         fontWeight: "bold",
     }),
 
+    viewLogo: {
+        width: "100%",
+        marginTop: 50,
+        flexDirection: "row",
+        justifyContent: "center"
+    },
+
     logoU: {
-        marginTop: 50
+        marginRight: 10
+    },
+
+    logoHospital: {
+        marginLeft: 10
     }
 });
