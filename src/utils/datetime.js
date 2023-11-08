@@ -39,6 +39,16 @@ const getTodaysDate = () => {
     return todaysDateStr;
 }
 
+const getToday = () => {
+    const todaysDate = new Date();
+    const year = todaysDate.getFullYear();
+    const month = (todaysDate.getMonth() + 1) < 10 ? "0" + (todaysDate.getMonth() + 1) : "" + (todaysDate.getMonth() + 1);
+    const day = todaysDate.getDate() < 10 ? "0" + todaysDate.getDate() : "" + todaysDate.getDate();
+ 
+    const todaysDateStr = year + "-" + month + "-" + day;
+    return todaysDateStr;
+}
+
 
 
 export {
@@ -46,5 +56,6 @@ export {
     yearsPicker,
     minutesPicker,
     hoursPicker,
+    getToday,
     getTodaysDate
 }

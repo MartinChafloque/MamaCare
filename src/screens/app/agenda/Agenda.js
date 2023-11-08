@@ -12,6 +12,8 @@ import { screen } from '../../../utils/screenName';
 import { useDbData } from '../../../firebase/useDbData';
 import { updateDbData } from '../../../firebase/updateDbData';
 import { useCurrentUser } from '../../../firebase/useCurrentUser';
+import { getToday } from '../../../utils/datetime';
+
 
 LocaleConfig.locales['es'] = {
   monthNames: [
@@ -80,9 +82,8 @@ export function Agenda() {
           newFechas[val.fecha].dots.push(newDot);
         }
       })
-      const day = new Date();
       setFechas(newFechas);
-      handleSelectedDate(day.getFullYear() + "-" + (day.getMonth() + 1) + "-" + day.getDate());
+      handleSelectedDate(getToday());
     }
   }, [recordatorios, user]);
 
